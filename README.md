@@ -33,3 +33,9 @@ Files:
 ### Spec
 
 Blocks are 8x8.
+- Black
+- White
+- Terrain
+- Goal
+
+32h * 64w max
