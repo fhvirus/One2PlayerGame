@@ -1,0 +1,82 @@
+// Fixes:
+// method -> function
+// x, y -> + Coordinate
+
+class TestGraphic {
+	static int SCREEN_BASE_ADDRESS;
+
+	/** Initialize static variable */
+	function void init() {
+		let SCREEN_BASE_ADDRESS = 16384;
+		return;
+	}
+
+	/** Clean up block */
+	function void cleanBlock(int xCoordinate, int yCoordinate) {
+		var int memAddress;
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
+		do Memory.poke(memAddress +0, 0);
+		do Memory.poke(memAddress +32, 0);
+		do Memory.poke(memAddress +64, 0);
+		do Memory.poke(memAddress +96, 0);
+		do Memory.poke(memAddress +128, 0);
+		do Memory.poke(memAddress +160, 0);
+		do Memory.poke(memAddress +192, 0);
+		do Memory.poke(memAddress +224, 0);
+		do Memory.poke(memAddress +256, 0);
+		do Memory.poke(memAddress +288, 0);
+		do Memory.poke(memAddress +320, 0);
+		do Memory.poke(memAddress +352, 0);
+		do Memory.poke(memAddress +384, 0);
+		do Memory.poke(memAddress +416, 0);
+		do Memory.poke(memAddress +448, 0);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	/** Draws white Among us */
+	function void drawWhitePlayer(int xCoordinate, int yCoordinate) {
+		var int memAddress;
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
+		do Memory.poke(memAddress +0, 0);
+		do Memory.poke(memAddress +32, 3968);
+		do Memory.poke(memAddress +64, 4192);
+		do Memory.poke(memAddress +96, 15888);
+		do Memory.poke(memAddress +128, 8464);
+		do Memory.poke(memAddress +160, 16540);
+		do Memory.poke(memAddress +192, 16530);
+		do Memory.poke(memAddress +224, 8466);
+		do Memory.poke(memAddress +256, 15890);
+		do Memory.poke(memAddress +288, 8210);
+		do Memory.poke(memAddress +320, 8210);
+		do Memory.poke(memAddress +352, 8220);
+		do Memory.poke(memAddress +384, 10000);
+		do Memory.poke(memAddress +416, 9360);
+		do Memory.poke(memAddress +448, 6240);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	/** Draws Black Among us */
+	function void drawBlackPlayer(int xCoordinate, int yCoordinate) {
+		var int memAddress;
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -3969);
+		do Memory.poke(memAddress +64, -4193);
+		do Memory.poke(memAddress +96, -15889);
+		do Memory.poke(memAddress +128, -8465);
+		do Memory.poke(memAddress +160, -16541);
+		do Memory.poke(memAddress +192, -16531);
+		do Memory.poke(memAddress +224, -8467);
+		do Memory.poke(memAddress +256, -15891);
+		do Memory.poke(memAddress +288, -8211);
+		do Memory.poke(memAddress +320, -8211);
+		do Memory.poke(memAddress +352, -8221);
+		do Memory.poke(memAddress +384, -10001);
+		do Memory.poke(memAddress +416, -9361);
+		do Memory.poke(memAddress +448, -6241);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+}

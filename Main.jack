@@ -11,15 +11,32 @@ class Main {
 		let whitePlayerX = 1;
 		let whitePlayerY = 0;
 
+		do TestGraphic.init();
+		do TestGraphic.drawBlackPlayer(blackPlayerX*16, blackPlayerY*16);
+		do TestGraphic.drawWhitePlayer(whitePlayerX*16, whitePlayerY*16);
+
 		while (true) {
 			while (key = 0) {
 				let key = Keyboard.keyPressed();
 			}
 
+			// Q: quit
 			if (key = 81) {
 				return;
 			}
 
+			do TestGraphic.cleanBlock(blackPlayerX*16, blackPlayerY*16);
+			do TestGraphic.cleanBlock(whitePlayerX*16, whitePlayerY*16);
+
+			// R: reset position
+			if (key = 82) {
+				let blackPlayerX = 0;
+				let blackPlayerY = 0;
+				let whitePlayerX = 1;
+				let whitePlayerY = 0;
+			}
+
+			// WASD
 			if ((key = 87) & (blackPlayerY > 0) & (~((blackPlayerX = whitePlayerX) & (blackPlayerY - 1 = whitePlayerY))) ) {
 				let blackPlayerY = blackPlayerY - 1;
 			}
@@ -33,6 +50,7 @@ class Main {
 				let blackPlayerX = blackPlayerX + 1;
 			}
 
+			// Arrow ULDR
 			if ((key = 131) & (whitePlayerY > 0) & (~((whitePlayerX = blackPlayerX) & (whitePlayerY - 1 = blackPlayerY))) ) {
 				let whitePlayerY = whitePlayerY - 1;
 			}
@@ -46,16 +64,20 @@ class Main {
 				let whitePlayerX = whitePlayerX + 1;
 			}
 
-			do Output.printString("(");
-			do Output.printInt(blackPlayerX);
-			do Output.printString(", ");
-			do Output.printInt(blackPlayerY);
-			do Output.printString("), (");
-			do Output.printInt(whitePlayerX);
-			do Output.printString(", ");
-			do Output.printInt(whitePlayerY);
-			do Output.printString(")");
-			do Output.println();
+			do TestGraphic.drawBlackPlayer(blackPlayerX*16, blackPlayerY*16);
+			do TestGraphic.drawWhitePlayer(whitePlayerX*16, whitePlayerY*16);
+
+			// do Output.printString("(");
+			// do Output.printInt(blackPlayerX);
+			// do Output.printString(", ");
+			// do Output.printInt(blackPlayerY);
+			// do Output.printString("), (");
+			// do Output.printInt(whitePlayerX);
+			// do Output.printString(", ");
+			// do Output.printInt(whitePlayerY);
+			// do Output.printString(")");
+			// do Output.println();
+
 			while (~(key = 0)) {
 				let key = Keyboard.keyPressed();
 			}
