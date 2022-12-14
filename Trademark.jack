@@ -1,0 +1,104 @@
+/** This file has no purpose*/
+/** I just wanted to try it out*/
+
+
+/** Implement Trademark graphics */
+class Trademark_Graphics {
+
+    static int SCREEN_BASE_ADDRESS;
+
+    /** Initialize static variable */
+    function void init() {
+        let SCREEN_BASE_ADDRESS = 16384;
+        return;
+    }
+		/**Draw*/
+	method void drawFHWhite(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress, 0);
+		do Memory.poke(memAddress +32, 25470);
+		do Memory.poke(memAddress +64, 25470);
+		do Memory.poke(memAddress +96, 25350);
+		do Memory.poke(memAddress +128, 25350);
+		do Memory.poke(memAddress +160, 25350);
+		do Memory.poke(memAddress +192, 25350);
+		do Memory.poke(memAddress +224, 32638);
+		do Memory.poke(memAddress +256, 32638);
+		do Memory.poke(memAddress +288, 25350);
+		do Memory.poke(memAddress +320, 25350);
+		do Memory.poke(memAddress +352, 25350);
+		do Memory.poke(memAddress +384, 25350);
+		do Memory.poke(memAddress +416, 25350);
+		do Memory.poke(memAddress +448, 25350);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	method void drawFHBlack(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress, -1);
+		do Memory.poke(memAddress +32, -25471);
+		do Memory.poke(memAddress +64, -25471);
+		do Memory.poke(memAddress +96, -25351);
+		do Memory.poke(memAddress +128, -25351);
+		do Memory.poke(memAddress +160, -25351);
+		do Memory.poke(memAddress +192, -25351);
+		do Memory.poke(memAddress +224, -32639);
+		do Memory.poke(memAddress +256, -32639);
+		do Memory.poke(memAddress +288, -25351);
+		do Memory.poke(memAddress +320, -25351);
+		do Memory.poke(memAddress +352, -25351);
+		do Memory.poke(memAddress +384, -25351);
+		do Memory.poke(memAddress +416, -25351);
+		do Memory.poke(memAddress +448, -25351);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	method void drawNTWhite(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress, 0);
+		do Memory.poke(memAddress +32, 32766);
+		do Memory.poke(memAddress +64, 32766);
+		do Memory.poke(memAddress +96, 3072);
+		do Memory.poke(memAddress +128, 3462);
+		do Memory.poke(memAddress +160, 3470);
+		do Memory.poke(memAddress +192, 3470);
+		do Memory.poke(memAddress +224, 3486);
+		do Memory.poke(memAddress +256, 3486);
+		do Memory.poke(memAddress +288, 3510);
+		do Memory.poke(memAddress +320, 3574);
+		do Memory.poke(memAddress +352, 3558);
+		do Memory.poke(memAddress +384, 3526);
+		do Memory.poke(memAddress +416, 3526);
+		do Memory.poke(memAddress +448, 3462);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	method void drawNTBlack(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = 16384+location;
+		do Memory.poke(memAddress, -1);
+		do Memory.poke(memAddress +32, -32767);
+		do Memory.poke(memAddress +64, -32767);
+		do Memory.poke(memAddress +96, -3073);
+		do Memory.poke(memAddress +128, -3463);
+		do Memory.poke(memAddress +160, -3471);
+		do Memory.poke(memAddress +192, -3471);
+		do Memory.poke(memAddress +224, -3487);
+		do Memory.poke(memAddress +256, -3487);
+		do Memory.poke(memAddress +288, -3511);
+		do Memory.poke(memAddress +320, -3575);
+		do Memory.poke(memAddress +352, -3559);
+		do Memory.poke(memAddress +384, -3527);
+		do Memory.poke(memAddress +416, -3527);
+		do Memory.poke(memAddress +448, -3463);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+}

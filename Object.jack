@@ -1,0 +1,175 @@
+/** Implement graphics of the game's object */
+/** Purpose is to initialize all game object's Array bitmap */
+
+class Object {
+
+    static Array WhitePlayerBitmap, BlackPlayerBitmap; 
+    static Array WhiteTerrainBitmap, BlackTerrainBitmap;
+    static Array Immovable1Bitmap, Immovable2Bitmap;
+    static Array WhiteGoalBitmap, BlackGoalBitmap;
+
+    function void init() {
+        // WhitePlayerBitmap
+        let WhitePlayerBitmap = Array.new(16);
+
+        let WhitePlayerBitmap[0] = 0;
+        let WhitePlayerBitmap[1] = 3968;
+        let WhitePlayerBitmap[2] = 4192;
+        let WhitePlayerBitmap[3] = 15888;
+        let WhitePlayerBitmap[4] = 8464;
+        let WhitePlayerBitmap[5] = 16540;
+        let WhitePlayerBitmap[6] = 16530;
+        let WhitePlayerBitmap[7] = 8466;
+        let WhitePlayerBitmap[8] = 15890;
+        let WhitePlayerBitmap[9] = 8210;
+        let WhitePlayerBitmap[10] = 8210;
+        let WhitePlayerBitmap[11] = 8220;
+        let WhitePlayerBitmap[12] = 10000;
+        let WhitePlayerBitmap[13] = 9360;
+        let WhitePlayerBitmap[14] = 6240;
+        let WhitePlayerBitmap[15] = 0;
+
+        //BlackPlayerBitmap
+        let BlackPlayerBitmap = Array.new(16);
+
+        let BlackPlayerBitmap[0] = -1;
+        let BlackPlayerBitmap[1] = -3969;
+        let BlackPlayerBitmap[2] = -4193;
+        let BlackPlayerBitmap[3] = -15889;
+        let BlackPlayerBitmap[4] = -8465;
+        let BlackPlayerBitmap[5] = -16541;
+        let BlackPlayerBitmap[6] = -16531;
+        let BlackPlayerBitmap[7] = -8467;
+        let BlackPlayerBitmap[8] = -15891;
+        let BlackPlayerBitmap[9] = -8211;
+        let BlackPlayerBitmap[10] = -8211;
+        let BlackPlayerBitmap[11] = -8221;
+        let BlackPlayerBitmap[12] = -10001;
+        let BlackPlayerBitmap[13] = -9361;
+        let BlackPlayerBitmap[14] = -6241;
+        let BlackPlayerBitmap[15] = -1;
+
+        //WhiteTerrainBitmap
+        let WhiteTerrainBitmap = Array.new(16);
+
+        let WhiteTerrainBitmap[0] = 0;
+        let WhiteTerrainBitmap[1] = -8323;
+        let WhiteTerrainBitmap[2] = -8323;
+        let WhiteTerrainBitmap[3] = 0;
+        let WhiteTerrainBitmap[4] = -1041;
+        let WhiteTerrainBitmap[5] = -1041;
+        let WhiteTerrainBitmap[6] = 0;
+        let WhiteTerrainBitmap[7] = -16645;
+        let WhiteTerrainBitmap[8] = -16645;
+        let WhiteTerrainBitmap[9] = 0;
+        let WhiteTerrainBitmap[10] = -2081;
+        let WhiteTerrainBitmap[11] = -2081;
+        let WhiteTerrainBitmap[12] = 0;
+        let WhiteTerrainBitmap[13] = -8323;
+        let WhiteTerrainBitmap[14] = -8323;
+        let WhiteTerrainBitmap[15] = 0;
+
+        //BlackTerrainBitmap
+        let BlackTerrainBitmap = Array.new(16);
+
+        let BlackTerrainBitmap[0] = -1;
+        let BlackTerrainBitmap[1] = 8322;
+        let BlackTerrainBitmap[2] = 8322;
+        let BlackTerrainBitmap[3] = -1;
+        let BlackTerrainBitmap[4] = 1040;
+        let BlackTerrainBitmap[5] = 1040;
+        let BlackTerrainBitmap[6] = -1;
+        let BlackTerrainBitmap[7] = 16644;
+        let BlackTerrainBitmap[8] = 16644;
+        let BlackTerrainBitmap[9] = -1;
+        let BlackTerrainBitmap[10] = 2080;
+        let BlackTerrainBitmap[11] = 2080;
+        let BlackTerrainBitmap[12] = -1;
+        let BlackTerrainBitmap[13] = 8322;
+        let BlackTerrainBitmap[14] = 8322;
+        let BlackTerrainBitmap[15] = -1;
+
+        //Immovable1Bitmap
+        let Immovable1Bitmap = Array.new(16);
+
+        let Immovable1Bitmap[0] = 255;
+        let Immovable1Bitmap[1] = 24825;
+        let Immovable1Bitmap[2] = 28913;
+        let Immovable1Bitmap[3] = 14563;
+        let Immovable1Bitmap[4] = 7367;
+        let Immovable1Bitmap[5] = 3727;
+        let Immovable1Bitmap[6] = 1823;
+        let Immovable1Bitmap[7] = 831;
+        let Immovable1Bitmap[8] = -832;
+        let Immovable1Bitmap[9] = -1824;
+        let Immovable1Bitmap[10] = -3728;
+        let Immovable1Bitmap[11] = -7368;
+        let Immovable1Bitmap[12] = -14564;
+        let Immovable1Bitmap[13] = -28914;
+        let Immovable1Bitmap[14] = -24826;
+        let Immovable1Bitmap[15] = -256;
+
+        //Immovable2Bitmap
+        let Immovable2Bitmap = Array.new(16);
+
+        let Immovable2Bitmap[0] = -256;
+        let Immovable2Bitmap[1] = -24826;
+        let Immovable2Bitmap[2] = -28914;
+        let Immovable2Bitmap[3] = -14564;
+        let Immovable2Bitmap[4] = -7368;
+        let Immovable2Bitmap[5] = -3728;
+        let Immovable2Bitmap[6] = -1824;
+        let Immovable2Bitmap[7] = -1824;
+        let Immovable2Bitmap[8] = -832;
+        let Immovable2Bitmap[9] = 831;
+        let Immovable2Bitmap[10] = 1823;
+        let Immovable2Bitmap[11] = 3727;
+        let Immovable2Bitmap[12] = 7367;
+        let Immovable2Bitmap[13] = 14563;
+        let Immovable2Bitmap[14] = 28913;
+        let Immovable2Bitmap[15] = 255;
+
+        //WhiteGoalBitmap
+        let WhiteGoalBitmap = Array.new(16);
+
+        let WhiteGoalBitmap[0] = 0;
+        let WhiteGoalBitmap[1] = 6144;
+        let WhiteGoalBitmap[2] = 5120;
+        let WhiteGoalBitmap[3] = 4608;
+        let WhiteGoalBitmap[4] = 4352;
+        let WhiteGoalBitmap[5] = 6272;
+        let WhiteGoalBitmap[6] = 2112;
+        let WhiteGoalBitmap[7] = 3104;
+        let WhiteGoalBitmap[8] = 1552;
+        let WhiteGoalBitmap[9] = 792;
+        let WhiteGoalBitmap[10] = 444;
+        let WhiteGoalBitmap[11] = 222;
+        let WhiteGoalBitmap[12] = 15;
+        let WhiteGoalBitmap[13] = 6;
+        let WhiteGoalBitmap[14] = 0;
+        let WhiteGoalBitmap[15] = 0;
+
+        //BlackGoalBitmap
+        let BlackGoalBitmap = Array.new(16);
+
+        let BlackGoalBitmap[0] = -1;
+        let BlackGoalBitmap[1] = -12289;
+        let BlackGoalBitmap[2] = -10241;
+        let BlackGoalBitmap[3] = -9217;
+        let BlackGoalBitmap[4] = -8705;
+        let BlackGoalBitmap[5] = -12545;
+        let BlackGoalBitmap[6] = -4225;
+        let BlackGoalBitmap[7] = -6209;
+        let BlackGoalBitmap[8] = -3105;
+        let BlackGoalBitmap[9] = -1585;
+        let BlackGoalBitmap[10] = -889;
+        let BlackGoalBitmap[11] = -445;
+        let BlackGoalBitmap[12] = -31;
+        let BlackGoalBitmap[13] = -13;
+        let BlackGoalBitmap[14] = -1;
+        let BlackGoalBitmap[15] = -1;
+
+        return;
+    }
+
+}
