@@ -22,8 +22,8 @@ Can push a bunch of boxes if there is no 1) terrain 2) the other character.
 	- Maybe we need to make basic structures for maps.
 
 - Maps
-	- Tutorials
-	- Free map
+	- [done]Tutorials
+	- [done]Free map
 	- Challenges
 
 - Main
