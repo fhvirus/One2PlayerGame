@@ -34,7 +34,7 @@ class TestGraphic {
 		return;
 	}
 
-	/** Draws white Among us */
+	/** Draws White Among Us */
 	function void drawWhitePlayer(int xCoordinate, int yCoordinate) {
 		var int memAddress;
 		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
@@ -57,7 +57,7 @@ class TestGraphic {
 		return;
 	}
 
-	/** Draws Black Among us */
+	/** Draws Black Among Us */
 	function void drawBlackPlayer(int xCoordinate, int yCoordinate) {
 		var int memAddress;
 		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);

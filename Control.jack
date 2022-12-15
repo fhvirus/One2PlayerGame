@@ -1,0 +1,103 @@
+class Control {
+	static int key;
+	static int blackPlayerX, blackPlayerY;
+	static int whitePlayerX, whitePlayerY;
+	static int blackPlayerSX, blackPlayerSY;
+	static int whitePlayerSX, whitePlayerSY;
+
+	function void init(int bsx, int bsy, int wsx, int wsy) {
+		let blackPlayerSX = bsx;
+		let blackPlayerSY = bsy;
+		let whitePlayerSX = wsx;
+		let whitePlayerSY = wsy;
+		do Control.reset();
+		do Control.draw();
+		return;
+	}
+
+	function void reset() {
+		let blackPlayerX = blackPlayerSX;
+		let blackPlayerY = blackPlayerSY;
+		let whitePlayerX = whitePlayerSX;
+		let whitePlayerY = whitePlayerSY;
+		return;
+	}
+
+	function void draw() {
+		do TestGraphic.drawBlackPlayer(blackPlayerX*16, blackPlayerY*16);
+		do TestGraphic.drawWhitePlayer(whitePlayerX*16, whitePlayerY*16);
+		return;
+	}
+
+	function boolean valid(int x, int y) {
+		return ((-1 < x) & (x < 32) & (-1 < y) & (y < 16)
+				& (~((x = blackPlayerX) & (y = blackPlayerY)))
+				& (~((x = whitePlayerX) & (y = whitePlayerY)))
+		);
+	}
+
+	function int move() {
+		while (~(key = 0)) {
+			let key = Keyboard.keyPressed();
+		}
+		while (key = 0) {
+			let key = Keyboard.keyPressed();
+		}
+
+		// Q: quit
+		if (key = 81) {
+			return 1;
+		}
+
+		do TestGraphic.cleanBlock(blackPlayerX*16, blackPlayerY*16);
+		do TestGraphic.cleanBlock(whitePlayerX*16, whitePlayerY*16);
+
+		// R: reset position
+		if (key = 82) {
+			do Control.reset();
+		}
+
+		// WASD:  87  65  83  68
+		// ULDR: 131 130 133 132
+
+		// WASD
+		if ((key = 87) & Control.valid(blackPlayerX, blackPlayerY - 1)) {
+			let blackPlayerY = blackPlayerY - 1;
+		}
+		if ((key = 65) & Control.valid(blackPlayerX - 1, blackPlayerY)) {
+			let blackPlayerX = blackPlayerX - 1;
+		}
+		if ((key = 83) & Control.valid(blackPlayerX, blackPlayerY + 1)) {
+			let blackPlayerY = blackPlayerY + 1;
+		}
+		if ((key = 68) & Control.valid(blackPlayerX + 1, blackPlayerY)) {
+			let blackPlayerX = blackPlayerX + 1;
+		}
+
+		// Arrow ULDR
+		if ((key = 131) & Control.valid(whitePlayerX, whitePlayerY - 1)) {
+			let whitePlayerY = whitePlayerY - 1;
+		}
+		if ((key = 130) & Control.valid(whitePlayerX - 1, whitePlayerY)) {
+			let whitePlayerX = whitePlayerX - 1;
+		}
+		if ((key = 133) & Control.valid(whitePlayerX, whitePlayerY + 1)) {
+			let whitePlayerY = whitePlayerY + 1;
+		}
+		if ((key = 132) & Control.valid(whitePlayerX + 1, whitePlayerY)) {
+			let whitePlayerX = whitePlayerX + 1;
+		}
+
+		// do Output.printString("(");
+		// do Output.printInt(blackPlayerX);
+		// do Output.printString(", ");
+		// do Output.printInt(blackPlayerY);
+		// do Output.printString("), (");
+		// do Output.printInt(whitePlayerX);
+		// do Output.printString(", ");
+		// do Output.printInt(whitePlayerY);
+		// do Output.printString(")");
+		// do Output.println();
+		return 0;
+	}
+}
