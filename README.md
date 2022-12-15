@@ -1,5 +1,12 @@
 # One2PlayerGame
 
+Control:
+- Currently using `TestGraphic` to render.
+- `void init()`: Set players' initial positions and draw them. Call after `Graphic` and map are initialized.
+- `int move()`: Wait until a key is pressed, then move player accordingly.
+	- 0 for valid move.
+	- 1 for quit (`Q`).
+
 ### TODO
 
 Rodent's revenge but with two player.
