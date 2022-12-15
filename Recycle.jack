@@ -1,0 +1,85 @@
+/** To store code of denied ideas */
+/** In case of need in future */
+
+        /** Draws WhiteKnife */
+    method void WhiteKnife(int xCoordinate, int yCoordinate) {
+        var int memAddress; 
+        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
+        do Memory.poke(memAddress +0, 6144);
+        do Memory.poke(memAddress +32, 5120);
+        do Memory.poke(memAddress +64, 4608);
+        do Memory.poke(memAddress +96, 4352);
+        do Memory.poke(memAddress +128, 6272);
+        do Memory.poke(memAddress +160, 2112);
+        do Memory.poke(memAddress +192, 3104);
+        do Memory.poke(memAddress +224, 1552);
+        do Memory.poke(memAddress +256, 792);
+        do Memory.poke(memAddress +288, 444);
+        do Memory.poke(memAddress +320, 222);
+        do Memory.poke(memAddress +352, 15);
+        do Memory.poke(memAddress +384, 6);
+        return;
+    }
+
+    //WhiteKnifeBitmap
+    let WhiteKnifeBitmap = Array.new(16);
+
+    let WhiteKnifeBitmap[0] = 0;
+    let WhiteKnifeBitmap[1] = 6144;
+    let WhiteKnifeBitmap[2] = 5120;
+    let WhiteKnifeBitmap[3] = 4608;
+    let WhiteKnifeBitmap[4] = 4352;
+    let WhiteKnifeBitmap[5] = 6272;
+    let WhiteKnifeBitmap[6] = 2112;
+    let WhiteKnifeBitmap[7] = 3104;
+    let WhiteKnifeBitmap[8] = 1552;
+    let WhiteKnifeBitmap[9] = 792;
+    let WhiteKnifeBitmap[10] = 444;
+    let WhiteKnifeBitmap[11] = 222;
+    let WhiteKnifeBitmap[12] = 15;
+    let WhiteKnifeBitmap[13] = 6;
+    let WhiteKnifeBitmap[14] = 0;
+    let WhiteKnifeBitmap[15] = 0;
+
+            /** Draws BlackKnife */
+    method void BlackKnife(int xCoordinate, int yCoordinate) {
+        var int memAddress; 
+        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
+        do Memory.poke(memAddress +0, -1);
+        do Memory.poke(memAddress +32, -12289);
+        do Memory.poke(memAddress +64, -10241);
+        do Memory.poke(memAddress +96, -9217);
+        do Memory.poke(memAddress +128, -8705);
+        do Memory.poke(memAddress +160, -12545);
+        do Memory.poke(memAddress +192, -4225);
+        do Memory.poke(memAddress +224, -6209);
+        do Memory.poke(memAddress +256, -3105);
+        do Memory.poke(memAddress +288, -1585);
+        do Memory.poke(memAddress +320, -889);
+        do Memory.poke(memAddress +352, -445);
+        do Memory.poke(memAddress +384, -31);
+        do Memory.poke(memAddress +416, -13);
+        do Memory.poke(memAddress +448, -1);
+        do Memory.poke(memAddress +480, -1);
+        return;
+    }
+
+    //BlackKnifeBitmap
+    let BlackKnifeBitmap = Array.new(16);
+
+    let BlackKnifeBitmap[0] = -1;
+    let BlackKnifeBitmap[1] = -12289;
+    let BlackKnifeBitmap[2] = -10241;
+    let BlackKnifeBitmap[3] = -9217;
+    let BlackKnifeBitmap[4] = -8705;
+    let BlackKnifeBitmap[5] = -12545;
+    let BlackKnifeBitmap[6] = -4225;
+    let BlackKnifeBitmap[7] = -6209;
+    let BlackKnifeBitmap[8] = -3105;
+    let BlackKnifeBitmap[9] = -1585;
+    let BlackKnifeBitmap[10] = -889;
+    let BlackKnifeBitmap[11] = -445;
+    let BlackKnifeBitmap[12] = -31;
+    let BlackKnifeBitmap[13] = -13;
+    let BlackKnifeBitmap[14] = -1;
+    let BlackKnifeBitmap[15] = -1;
