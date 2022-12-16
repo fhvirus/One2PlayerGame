@@ -1,7 +1,25 @@
 class Main {
 
 	function void main() {
-		do Graphics.test();
+
+		// do Graphics.test();
+
+		var int end;
+
+		do Graphics.init();
+
+		// do Map.init();
+		do Control.init(0, 0, 1, 0);
+
+		while (true) {
+			 let end = Control.move();
+			 if (end = 1) {
+				 return;
+			 }
+			 // do Map.draw();
+			 do Control.draw();
+		}
+
 		return;
 	}
 
