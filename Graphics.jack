@@ -8,6 +8,13 @@ class Graphics {
 	/* Initialize static variable */
 	function void init() {
 		let SCREEN_BASE_ADDRESS = 16384;
+		do Graphics.title();
+		return;
+	}
+
+	function void title() {
+		do Output.moveCursor(0, 24);
+		do Output.printString("One2PlayerGame");
 		return;
 	}
 
