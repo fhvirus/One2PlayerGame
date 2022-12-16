@@ -1,6 +1,6 @@
 /** Stores Map of levels in array[512] */
-/** array[512] = Coordinate[y][x] */
-/** first increment xCoordinate, then yCoordinate */
+/** array[512] = Index[y][x] */
+/** first increment xIndex, then yIndex */
 
 // A = White Tiles
 // B = Black Tiles
@@ -19,22 +19,32 @@ class Levels {
 
     static Array Tutorial1Map, Tutorial2Map;
     static Array Level1Map;  
+    static Array WhiteXIndex;
+    static Array WhiteYIndex;
+    static Array BlackXIndex;
+    static Array BlackYIndex;
 
     // Initialize Level Maps
     function void init() {
         // Map of Tutorial 1
+        let WhiteXIndex = Array.new(5);
+        let WhiteYIndex = Array.new(5);
+        let BlackXIndex = Array.new(5);
+        let BlackYIndex = Array.new(5);
+            
+
         let Tutorial1Map = Array.new(16);
 
-        let Tutorial1Map[0] = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        let Tutorial1Map[1] = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        let Tutorial1Map[2] = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        let Tutorial1Map[3] = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-        let Tutorial1Map[4] = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
-        let Tutorial1Map[5] = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
-        let Tutorial1Map[6] = "AAAAAABBBAAAAAAAAAAAAAAGAAABAAAI";
-        let Tutorial1Map[7] = "AGGGGGGGAAAAAAAAAAAAABAAABAAABBB";
-        let Tutorial1Map[8] = "AAAAEEEEAABAAAAAAAAAABBBBBBBBBBB";
-        let Tutorial1Map[9] = "EEEAEEEEABAABBABBBAAABBBBBBBBBBB";
+        let Tutorial1Map[0] =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        let Tutorial1Map[1] =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        let Tutorial1Map[2] =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        let Tutorial1Map[3] =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+        let Tutorial1Map[4] =  "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+        let Tutorial1Map[5] =  "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
+        let Tutorial1Map[6] =  "AAAAAABBBAAAAAAAAAAAAAAGAAABAAAI";
+        let Tutorial1Map[7] =  "AGGGGGGGAAAAAAAAAAAAABAAABAAABBB";
+        let Tutorial1Map[8] =  "AAAAEEEEAABAAAAAAAAAABBBBBBBBBBB";
+        let Tutorial1Map[9] =  "EEEAEEEEABAABBABBBAAABBBBBBBBBBB";
         let Tutorial1Map[10] = "AAAAEEEEAAAABBABBBAAABBBBAAABBBB";
         let Tutorial1Map[11] = "AEEEEEEEABAAAAABBBAAABBBBAAABBBB";
         let Tutorial1Map[12] = "AEEEEEEEABAABBAAAAAAABBBBBBBBBBB";
@@ -42,25 +52,40 @@ class Levels {
         let Tutorial1Map[14] = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
         let Tutorial1Map[15] = "EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE";
 
+        // Indexs of player in Tutorial 1
+        let WhiteXIndex[0] = 0;
+        let WhiteYIndex[0] = 13;
+        let BlackXIndex[0] = NULL;
+        let BlackYIndex[0] = NULL;
+
+
         // Map of Tutorail 2
         let Tutorial1Map = Array.new(16);
 
-        let Tutorial1Map[0] = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[1] = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[2] = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[3] = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[4] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        let Tutorial1Map[5] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        let Tutorial1Map[6] = "JBBBABBBHBBBBBBBBBBBBBBAAABBBBBB";
-        let Tutorial1Map[7] = "AAABBBABBBABBBBBBBBBBBBBHHHHHHHB";
-        let Tutorial1Map[8] = "AAAAAAAAAAABBBBBBBBBBABBFFFFBBBB";
-        let Tutorial1Map[9] = "AAAAAAAAAAABBBAAABAABBABFFFFBFFF";
+        let Tutorial1Map[0] =  "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial1Map[1] =  "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial1Map[2] =  "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial1Map[3] =  "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial1Map[4] =  "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial1Map[5] =  "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial1Map[6] =  "JBBBABBBHBBBBBBBBBBBBBBAAABBBBBB";
+        let Tutorial1Map[7] =  "AAABBBABBBABBBBBBBBBBBBBHHHHHHHB";
+        let Tutorial1Map[8] =  "AAAAAAAAAAABBBBBBBBBBABBFFFFBBBB";
+        let Tutorial1Map[9] =  "AAAAAAAAAAABBBAAABAABBABFFFFBFFF";
         let Tutorial1Map[10] = "AAAABBBAAAABBBAAABAABBBBFFFFBBBB";
-        let Tutorial1Map[11] = "AAAABBBAAAABBBAAABBBBBABFFFFFFFB";
+        let Tutorial1Map[11] = "AAAABBBAAAABBBAAABBBBBDBFFFFFFFB";
         let Tutorial1Map[12] = "AAAAAAAAAAABBBBBBBAABBABFFFFFFFB";
         let Tutorial1Map[13] = "BBBBBBBBBBBAAAAAAAAAAAAAEEEEEEEC";
         let Tutorial1Map[14] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
         let Tutorial1Map[15] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+
+
+        // Indexs of player in Tutorial 2
+        let WhiteXIndex[1] = 31;
+        let WhiteYIndex[1] = 13;
+        let BlackXIndex[1] = 22;
+        let BlackYIndex[1] = 11;
+
 
         // Map of Level 1
         let Level1Map = Array.new(16);
