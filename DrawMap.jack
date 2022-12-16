@@ -1,0 +1,93 @@
+// make a 256 array and put letter to indicate map
+// every level.jack is the 256 arrray
+
+// in drawmap, read in array from level
+// take draw function (preferably poke) from Graphics.jack
+// read array
+/** switch (read)
+    case: PB
+        do method Graphics.drawWhitePlayer(memOffSet)
+    case: PW
+    case: B
+    case: W
+    case: TB
+    case: TW
+    case: XB
+    case: XW
+    case: GB
+    case: GW */ 
+
+ ## TODO
+    - get x, y coordinates from memOffset of 256 bit array
+    - ask what should be constructed
+    - for each level, figure out edges
+    - design more levels
+
+class DrawMap {
+    
+    method void DrawMap(Array Levelbitmap) {
+        do Screen.clearScreen();
+        
+        var int MapIndex;
+        var int x;
+        var int y;
+
+        let MapIndex = 0;
+        let x = 0;
+        let y = 0;
+        while(~(MapIndex = 512)) {
+            if(x = 32) {
+                let x = 0;
+                let y = y + 1;
+            }
+            else {
+                let x = x + 1;
+            }
+
+            // Draw White Tile
+            if(Levelbitmap[MapIndex] = "PW" | levelbitmap[MapIndex] = "W"){
+                do Screen.setColor(false);
+                do Screen.drawRectangle(x, y, x + 15, y + 15);
+            }
+
+            // Draw Black Tile
+            if(Levelbitmap[MapIndex] = "PB" | levelbitmap[MapIndex] = "B"){
+                do Screen.setColor(true);
+                do Screen.drawRectangle(x, y, x + 15, y + 15);
+            }
+
+            // Draw White Terrain
+            if(Levelbitmap[map] = "TW"){
+                do Graphics.drawWhiteTerrain(x, y);
+            }
+
+            // Draw Black Terrain
+            if(Levelbitmap[map] = "TB"){
+                do Graphics.drawBlackTerrain(x, y);
+            }
+
+            // Draw Immovable1
+            if(Levelbitmap[map] = "XW"){
+                do Graphics.drawImmovable1(x, y);
+            }
+
+            // Draw Immovable2
+            if(Levelbitmap[map] = "XB"){
+                do Graphics.drawImmovable2(x, y);
+            }
+
+            // Draw White Goal
+            if(Levelbitmap[map] = "GW"){
+                do Graphics.drawWhiteGoal(x, y);
+            }
+
+            // Draw Black Goal
+            if(Levelbitmap[map] = "GB"){
+                do Graphics.drawBlackGoal(x, y);
+            }
+
+            let MapIndex = MapIndex + 1;
+        }
+    }
+}
+

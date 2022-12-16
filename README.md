@@ -30,6 +30,8 @@ Files:
 - Game
 	- Reset & Counter
 
+- Level
+	- Coordinate of 2 players
 ### Spec
 
 Blocks are 8x8.
