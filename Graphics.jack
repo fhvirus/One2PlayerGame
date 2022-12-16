@@ -166,7 +166,7 @@ class Graphics {
     }
 
         /** Draws WhiteGoal */
-    method void WhiteGoal(int xCoordinate, int yCoordinate) {
+    method void drawWhiteGoal(int xCoordinate, int yCoordinate) {
         var int memAddress; 
         let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
         do Memory.poke(memAddress +0, 4094);
@@ -185,7 +185,7 @@ class Graphics {
     }
 
             /** Draws BlackGoal */
-    method void BlackGoal(int xCoordinate, int yCoordinate) {
+    method void drawBlackGoal(int xCoordinate, int yCoordinate) {
         var int memAddress; 
         let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
         do Memory.poke(memAddress +0, -1);
