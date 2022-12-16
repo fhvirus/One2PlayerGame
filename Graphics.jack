@@ -26,6 +26,7 @@ class Graphics {
 		do Graphics.drawFHBlack(9, 0);
 		do Graphics.drawNTWhite(10, 0);
 		do Graphics.drawNTBlack(11, 0);
+		return;
 	}
 
 	/* Draws a single object with x, y coordinates & Array bitmap */

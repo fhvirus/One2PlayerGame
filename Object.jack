@@ -141,7 +141,7 @@ class Object {
         let WhiteGoalBitmap[6] = -24632;
         let WhiteGoalBitmap[7] = -32752;
         let WhiteGoalBitmap[8] = -16;
-        let WhiteGoalBitmap[9] = -326744
+        let WhiteGoalBitmap[9] = -32674;
         let WhiteGoalBitmap[10] = -16372;
         let WhiteGoalBitmap[11] = 24582;
         let WhiteGoalBitmap[12] = 12291;

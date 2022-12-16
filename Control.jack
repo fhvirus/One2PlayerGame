@@ -30,8 +30,9 @@ class Control {
 	}
 
 	function void undraw() {
-		do Graphics.drawWhiteBlock(blackPlayerX*16, blackPlayerY*16);
-		do Graphics.drawWhiteBlock(whitePlayerX*16, whitePlayerY*16);
+		do Graphics.drawWhiteBlock(blackPlayerX, blackPlayerY);
+		do Graphics.drawWhiteBlock(whitePlayerX, whitePlayerY);
+		return;
 	}
 
 	function boolean valid(int x, int y) {
