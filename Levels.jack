@@ -55,8 +55,8 @@ class Levels {
         // Indexs of player in Tutorial 1
         let WhiteXIndex[0] = 0;
         let WhiteYIndex[0] = 13;
-        let BlackXIndex[0] = NULL;
-        let BlackYIndex[0] = NULL;
+        let BlackXIndex[0] = -1;
+        let BlackYIndex[0] = -1;
 
 
         // Map of Tutorail 2
