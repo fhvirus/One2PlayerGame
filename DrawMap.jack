@@ -13,7 +13,6 @@
 // 74 = J = Black Goal
 
 class DrawMap {
-
 	function void DrawMap(Array LevelMap) {
 		var int RowIndex;
 		var int x;
@@ -21,8 +20,6 @@ class DrawMap {
 
 		var String MapRow;
 		var int CharIndex;
-
-		let MapRow = String.String(32);
 
 		do Screen.clearScreen();
 
@@ -37,47 +34,7 @@ class DrawMap {
 
 			while(~(CharIndex = 32)) {
 
-				// Draw White Tile
-				if(MapRow.charAt(CharIndex) = 65 | MapRow.charAt(CharIndex) = 67){
-					do Screen.setColor(false);
-					do Screen.drawRectangle(x, y, x + 15, y + 15);
-				}
-
-				// Draw Black Tile
-				if(MapRow.charAt(CharIndex) = 66 | MapRow.charAt(CharIndex) = 68){
-					do Screen.setColor(true);
-					do Screen.drawRectangle(x, y, x + 15, y + 15);
-				}
-
-				// Draw White Terrain
-				if(MapRow.charAt(CharIndex) = 69){
-					do Graphics.drawWhiteTerrain(x, y);
-				}
-
-				// Draw Black Terrain
-				if(MapRow.charAt(CharIndex) = 70){
-					do Graphics.drawBlackTerrain(x, y);
-				}
-
-				// Draw Immovable1
-				if(MapRow.charAt(CharIndex) = 71){
-					do Graphics.drawImmovable1(x, y);
-				}
-
-				// Draw Immovable2
-				if(MapRow.charAt(CharIndex) = 72){
-					do Graphics.drawImmovable2(x, y);
-				}
-
-				// Draw White Goal
-				if(MapRow.charAt(CharIndex) = 73){
-					do Graphics.drawWhiteGoal(x, y);
-				}
-
-				// Draw Black Goal
-				if(MapRow.charAt(CharIndex) = 74){
-					do Graphics.drawBlackGoal(x, y);
-				}
+				do Graphics.drawBlock(MapRow.charAt(CharIndex), x, y);
 
 				let CharIndex = CharIndex + 1;
 				let x = x + 1;

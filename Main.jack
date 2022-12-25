@@ -2,22 +2,25 @@ class Main {
 
 	function void main() {
 
-		// do Graphics.test();
-
 		var int end;
+
+		var String s;
+		var int i;
+
+		do Graphics.test();
 
 		do Graphics.init();
 
-		// do Map.init();
-		do Control.init(0, 0, 1, 0);
+		do Levels.init();
+		do Levels.DrawTutorial1();
 
-		while (true) {
-			 let end = Control.move();
-			 if (end = 1) {
-				 return;
-			 }
-			 // do Map.draw();
-			 do Control.draw();
+		do Control.init(0, 0, 0, 13);
+
+		do Control.draw();
+
+		let end = 0;
+		while (end = 0) {
+			let end = Control.move();
 		}
 
 		return;

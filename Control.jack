@@ -4,14 +4,16 @@ class Control {
 	static int whitePlayerX, whitePlayerY;
 	static int blackPlayerSX, blackPlayerSY;
 	static int whitePlayerSX, whitePlayerSY;
+	static Array map, initialMap;
+	static String tmp;
 
 	function void init(int bsx, int bsy, int wsx, int wsy) {
 		let blackPlayerSX = bsx;
 		let blackPlayerSY = bsy;
 		let whitePlayerSX = wsx;
 		let whitePlayerSY = wsy;
+		let initialMap = Levels.getTutorial1Map();
 		do Control.reset();
-		do Control.draw();
 		return;
 	}
 
@@ -20,6 +22,7 @@ class Control {
 		let blackPlayerY = blackPlayerSY;
 		let whitePlayerX = whitePlayerSX;
 		let whitePlayerY = whitePlayerSY;
+		let map = initialMap;
 		return;
 	}
 
@@ -30,16 +33,26 @@ class Control {
 	}
 
 	function void undraw() {
-		do Graphics.drawWhiteBlock(blackPlayerX, blackPlayerY);
-		do Graphics.drawWhiteBlock(whitePlayerX, whitePlayerY);
+		let tmp = map[blackPlayerY];
+		do Graphics.drawBlock(tmp.charAt(blackPlayerX), blackPlayerX, blackPlayerY);
+		let tmp = map[whitePlayerY];
+		do Graphics.drawBlock(tmp.charAt(whitePlayerX), whitePlayerX, whitePlayerY);
 		return;
 	}
 
-	function boolean valid(int x, int y) {
-		return ((-1 < x) & (x < 32) & (-1 < y) & (y < 16)
-				& (~((x = blackPlayerX) & (y = blackPlayerY)))
-				& (~((x = whitePlayerX) & (y = whitePlayerY)))
-				);
+	function boolean validWhite(int x, int y) {
+		if (~((-1 < x) & (x < 32) & (-1 < y) & (y < 16))) {
+			return false;
+		}
+		let tmp = map[y];
+		return (tmp.charAt(x) = 65);
+	}
+	function boolean validBlack(int x, int y) {
+		if (~((-1 < x) & (x < 32) & (-1 < y) & (y < 16))) {
+			return false;
+		}
+		let tmp = map[y];
+		return (tmp.charAt(x) = 66);
 	}
 
 	function int move() {
@@ -66,33 +79,35 @@ class Control {
 		// WASD:  87  65  83  68
 		// ULDR: 131 130 133 132
 
-		// WASD
-		if ((key = 87) & Control.valid(blackPlayerX, blackPlayerY - 1)) {
+		// Black Player: WASD
+		if ((key = 87) & Control.validBlack(blackPlayerX, blackPlayerY - 1)) {
 			let blackPlayerY = blackPlayerY - 1;
 		}
-		if ((key = 65) & Control.valid(blackPlayerX - 1, blackPlayerY)) {
+		if ((key = 65) & Control.validBlack(blackPlayerX - 1, blackPlayerY)) {
 			let blackPlayerX = blackPlayerX - 1;
 		}
-		if ((key = 83) & Control.valid(blackPlayerX, blackPlayerY + 1)) {
+		if ((key = 83) & Control.validBlack(blackPlayerX, blackPlayerY + 1)) {
 			let blackPlayerY = blackPlayerY + 1;
 		}
-		if ((key = 68) & Control.valid(blackPlayerX + 1, blackPlayerY)) {
+		if ((key = 68) & Control.validBlack(blackPlayerX + 1, blackPlayerY)) {
 			let blackPlayerX = blackPlayerX + 1;
 		}
 
-		// Arrow ULDR
-		if ((key = 131) & Control.valid(whitePlayerX, whitePlayerY - 1)) {
+		// White Player: Arrow ULDR
+		if ((key = 131) & Control.validWhite(whitePlayerX, whitePlayerY - 1)) {
 			let whitePlayerY = whitePlayerY - 1;
 		}
-		if ((key = 130) & Control.valid(whitePlayerX - 1, whitePlayerY)) {
+		if ((key = 130) & Control.validWhite(whitePlayerX - 1, whitePlayerY)) {
 			let whitePlayerX = whitePlayerX - 1;
 		}
-		if ((key = 133) & Control.valid(whitePlayerX, whitePlayerY + 1)) {
+		if ((key = 133) & Control.validWhite(whitePlayerX, whitePlayerY + 1)) {
 			let whitePlayerY = whitePlayerY + 1;
 		}
-		if ((key = 132) & Control.valid(whitePlayerX + 1, whitePlayerY)) {
+		if ((key = 132) & Control.validWhite(whitePlayerX + 1, whitePlayerY)) {
 			let whitePlayerX = whitePlayerX + 1;
 		}
+
+		do Control.draw();
 
 		// do Output.printString("(");
 		// do Output.printInt(blackPlayerX);
