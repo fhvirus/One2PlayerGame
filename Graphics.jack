@@ -1,210 +1,403 @@
-/** Implement graphics of the game's object */
-/** Purpose is to draw out one of all objects */
+/* Implement graphics of the game's object */
+/* Purpose is to draw out one of all objects */
 
 class Graphics {
 
-    static int SCREEN_BASE_ADDRESS;
+	static int SCREEN_BASE_ADDRESS;
 
-    /** Initialize static variable */
-    function void init() {
-        let SCREEN_BASE_ADDRESS = 16384;
-        return;
-    }
+	/* Initialize static variable */
+	function void init() {
+		let SCREEN_BASE_ADDRESS = 16384;
+		return;
+	}
 
-    /** Draws a single object with x, y coordinates & Array bitmap */
-    function void drawObject(int xCoordinate, int yCoordinate, Array bitmap) {
-        // x, y coordinates are of top left corner in 16*16 bit object
-        var int memOffset;
-        var int memAddress;
+	/* Test all blocks */
+	function void test() {
+		do Graphics.init();
+		do Graphics.drawWhitePlayer(0, 0); do Graphics.drawBlackPlayer(1, 0); do Graphics.drawWhiteTerrain(2, 0);
+		do Graphics.drawBlackTerrain(3, 0);
+		do Graphics.drawWhiteGoal(4, 0);
+		do Graphics.drawBlackGoal(5, 0);
+		do Graphics.drawWhiteBlock(6, 0);
+		do Graphics.drawBlackBlock(7, 0);
+		do Graphics.drawFHWhite(8, 0);
+		do Graphics.drawFHBlack(9, 0);
+		do Graphics.drawNTWhite(10, 0);
+		do Graphics.drawNTBlack(11, 0);
+		return;
+	}
 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
-            let memOffset = 0;
+	/* Draws a single object with x, y coordinates & Array bitmap */
+	function void drawObject(int xCoordinate, int yCoordinate, Array bitmap) {
+		// x, y coordinates are of top left corner in 16*16 bit object
+		var int memOffset;
+		var int memAddress;
 
-            while(memOffset < 16) {
-                do Memory.poke(memAddress + (memOffset * 32), bitmap[memOffset]);
-                let memOffset = memOffset + 1;
-            }
-        return;
-    }
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * yCoordinate) + Math.divide(xCoordinate, 16);
+		let memOffset = 0;
 
-        /** Draws white Among us */
-    method void drawWhitePlayer(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, 0);
-        do Memory.poke(memAddress +32, 3968);
-        do Memory.poke(memAddress +64, 4192);
-        do Memory.poke(memAddress +96, 15888);
-        do Memory.poke(memAddress +128, 8464);
-        do Memory.poke(memAddress +160, 16540);
-        do Memory.poke(memAddress +192, 16530);
-        do Memory.poke(memAddress +224, 8466);
-        do Memory.poke(memAddress +256, 15890);
-        do Memory.poke(memAddress +288, 8210);
-        do Memory.poke(memAddress +320, 8210);
-        do Memory.poke(memAddress +352, 8220);
-        do Memory.poke(memAddress +384, 10000);
-        do Memory.poke(memAddress +416, 9360);
-        do Memory.poke(memAddress +448, 6240);
-        do Memory.poke(memAddress +480, 0);
-        return;
-    }
+		while(memOffset < 16) {
+			do Memory.poke(memAddress + (memOffset * 32), bitmap[memOffset]);
+			let memOffset = memOffset + 1;
+		}
+		return;
+	}
 
-        /** Draws Black Among us */
-    method void drawBlackPlayer(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, -1);
-        do Memory.poke(memAddress +32, -3969);
-        do Memory.poke(memAddress +64, -4193);
-        do Memory.poke(memAddress +96, -15889);
-        do Memory.poke(memAddress +128, -8465);
-        do Memory.poke(memAddress +160, -16541);
-        do Memory.poke(memAddress +192, -16531);
-        do Memory.poke(memAddress +224, -8467);
-        do Memory.poke(memAddress +256, -15891);
-        do Memory.poke(memAddress +288, -8211);
-        do Memory.poke(memAddress +320, -8211);
-        do Memory.poke(memAddress +352, -8221);
-        do Memory.poke(memAddress +384, -10001);
-        do Memory.poke(memAddress +416, -9361);
-        do Memory.poke(memAddress +448, -6241);
-        do Memory.poke(memAddress +480, -1);
-        return;
-    }
+	/* Draws white among us */
+	function void drawWhitePlayer(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 0);
+		do Memory.poke(memAddress +32, 3968);
+		do Memory.poke(memAddress +64, 4192);
+		do Memory.poke(memAddress +96, 15888);
+		do Memory.poke(memAddress +128, 8464);
+		do Memory.poke(memAddress +160, 16540);
+		do Memory.poke(memAddress +192, 16530);
+		do Memory.poke(memAddress +224, 8466);
+		do Memory.poke(memAddress +256, 15890);
+		do Memory.poke(memAddress +288, 8210);
+		do Memory.poke(memAddress +320, 8210);
+		do Memory.poke(memAddress +352, 8220);
+		do Memory.poke(memAddress +384, 10000);
+		do Memory.poke(memAddress +416, 9360);
+		do Memory.poke(memAddress +448, 6240);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
 
-        /** Difference between Terrain and Immovable */
-        /** Terrain appears at edge of map */
-        /** Immovable appears in middle of map */
-        /** Both work in same logic */
+	/* Draws black among us */
+	function void drawBlackPlayer(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -3969);
+		do Memory.poke(memAddress +64, -4193);
+		do Memory.poke(memAddress +96, -15889);
+		do Memory.poke(memAddress +128, -8465);
+		do Memory.poke(memAddress +160, -16541);
+		do Memory.poke(memAddress +192, -16531);
+		do Memory.poke(memAddress +224, -8467);
+		do Memory.poke(memAddress +256, -15891);
+		do Memory.poke(memAddress +288, -8211);
+		do Memory.poke(memAddress +320, -8211);
+		do Memory.poke(memAddress +352, -8221);
+		do Memory.poke(memAddress +384, -10001);
+		do Memory.poke(memAddress +416, -9361);
+		do Memory.poke(memAddress +448, -6241);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
 
-        /** Draws White Terrain */
-    method void drawWhiteTerrain(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-    	do Memory.poke(memAddress +0, -8323);
-        do Memory.poke(memAddress +32, -8323);
-        do Memory.poke(memAddress +96, -1041);
-        do Memory.poke(memAddress +128, -1041);
-        do Memory.poke(memAddress +192, -16645);
-        do Memory.poke(memAddress +224, -16645);
-        do Memory.poke(memAddress +288, -2081);
-        do Memory.poke(memAddress +320, -2081);
-        do Memory.poke(memAddress +384, -8323);
-        do Memory.poke(memAddress +416, -8323);
-        return;
-    }
+	/* Difference between Terrain and Immovable */
+	/* Terrain appears at edge of map */
+	/* Immovable appears in middle of map */
+	/* Both work in same logic */
 
-        /** Draws Black Terrain */
-    method void drawBlackTerrain(int xCoordinate, int yCoordinate) {
-	    var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, -1);
-        do Memory.poke(memAddress +32, 8322);
-        do Memory.poke(memAddress +64, 8322);
-        do Memory.poke(memAddress +96, -1);
-        do Memory.poke(memAddress +128, 1040);
-        do Memory.poke(memAddress +160, 1040);
-        do Memory.poke(memAddress +192, -1);
-        do Memory.poke(memAddress +224, 16644);
-        do Memory.poke(memAddress +256, 16644);
-        do Memory.poke(memAddress +288, -1);
-        do Memory.poke(memAddress +320, 2080);
-        do Memory.poke(memAddress +352, 2080);
-        do Memory.poke(memAddress +384, -1);
-        do Memory.poke(memAddress +416, 8322);
-        do Memory.poke(memAddress +448, 8322);
-        do Memory.poke(memAddress +480, -1);
-        return;
-    }
-        /** Draws Immovable1 */
-    method void drawImmovable1(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, 255);
-        do Memory.poke(memAddress +32, 24825);
-        do Memory.poke(memAddress +64, 28913);
-        do Memory.poke(memAddress +96, 14563);
-        do Memory.poke(memAddress +128, 7367);
-        do Memory.poke(memAddress +160, 3727);
-        do Memory.poke(memAddress +192, 1823);
-        do Memory.poke(memAddress +224, 831);
-        do Memory.poke(memAddress +256, -832);
-        do Memory.poke(memAddress +288, -1824);
-        do Memory.poke(memAddress +320, -3728);
-        do Memory.poke(memAddress +352, -7368);
-        do Memory.poke(memAddress +384, -14564);
-        do Memory.poke(memAddress +416, -28914);
-        do Memory.poke(memAddress +448, -24826);
-        do Memory.poke(memAddress +480, -256);
-        return;
-    }
+	/* Draws white terrain */
+	function void drawWhiteTerrain(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -8323);
+		do Memory.poke(memAddress +32, -8323);
+		do Memory.poke(memAddress +96, -1041);
+		do Memory.poke(memAddress +128, -1041);
+		do Memory.poke(memAddress +192, -16645);
+		do Memory.poke(memAddress +224, -16645);
+		do Memory.poke(memAddress +288, -2081);
+		do Memory.poke(memAddress +320, -2081);
+		do Memory.poke(memAddress +384, -8323);
+		do Memory.poke(memAddress +416, -8323);
+		return;
+	}
 
-        /** Draws Immovable2 */
-    method void drawImmovable2(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, -256);
-        do Memory.poke(memAddress +32, -24826);
-        do Memory.poke(memAddress +64, -28914);
-        do Memory.poke(memAddress +96, -14564);
-        do Memory.poke(memAddress +128, -7368);
-        do Memory.poke(memAddress +160, -3728);
-        do Memory.poke(memAddress +192, -1824);
-        do Memory.poke(memAddress +224, -832);
-        do Memory.poke(memAddress +256, 831);
-        do Memory.poke(memAddress +288, 1823);
-        do Memory.poke(memAddress +320, 3727);
-        do Memory.poke(memAddress +352, 7367);
-        do Memory.poke(memAddress +384, 14563);
-        do Memory.poke(memAddress +416, 28913);
-        do Memory.poke(memAddress +448, 24825);
-        do Memory.poke(memAddress +480, 255);
-        return;
-    }
+	/* Draws black terrain */
+	function void drawBlackTerrain(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, 8322);
+		do Memory.poke(memAddress +64, 8322);
+		do Memory.poke(memAddress +96, -1);
+		do Memory.poke(memAddress +128, 1040);
+		do Memory.poke(memAddress +160, 1040);
+		do Memory.poke(memAddress +192, -1);
+		do Memory.poke(memAddress +224, 16644);
+		do Memory.poke(memAddress +256, 16644);
+		do Memory.poke(memAddress +288, -1);
+		do Memory.poke(memAddress +320, 2080);
+		do Memory.poke(memAddress +352, 2080);
+		do Memory.poke(memAddress +384, -1);
+		do Memory.poke(memAddress +416, 8322);
+		do Memory.poke(memAddress +448, 8322);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+	/* Draws immovable 1 */
+	function void drawImmovable1(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 255);
+		do Memory.poke(memAddress +32, 24825);
+		do Memory.poke(memAddress +64, 28913);
+		do Memory.poke(memAddress +96, 14563);
+		do Memory.poke(memAddress +128, 7367);
+		do Memory.poke(memAddress +160, 3727);
+		do Memory.poke(memAddress +192, 1823);
+		do Memory.poke(memAddress +224, 831);
+		do Memory.poke(memAddress +256, -832);
+		do Memory.poke(memAddress +288, -1824);
+		do Memory.poke(memAddress +320, -3728);
+		do Memory.poke(memAddress +352, -7368);
+		do Memory.poke(memAddress +384, -14564);
+		do Memory.poke(memAddress +416, -28914);
+		do Memory.poke(memAddress +448, -24826);
+		do Memory.poke(memAddress +480, -256);
+		return;
+	}
 
-        /** Draws WhiteGoal */
-    method void WhiteGoal(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, 6144);
-        do Memory.poke(memAddress +32, 5120);
-        do Memory.poke(memAddress +64, 4608);
-        do Memory.poke(memAddress +96, 4352);
-        do Memory.poke(memAddress +128, 6272);
-        do Memory.poke(memAddress +160, 2112);
-        do Memory.poke(memAddress +192, 3104);
-        do Memory.poke(memAddress +224, 1552);
-        do Memory.poke(memAddress +256, 792);
-        do Memory.poke(memAddress +288, 444);
-        do Memory.poke(memAddress +320, 222);
-        do Memory.poke(memAddress +352, 15);
-        do Memory.poke(memAddress +384, 6);
-        return;
-    }
+	/* Draws immovable 2 */
+	function void drawImmovable2(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -256);
+		do Memory.poke(memAddress +32, -24826);
+		do Memory.poke(memAddress +64, -28914);
+		do Memory.poke(memAddress +96, -14564);
+		do Memory.poke(memAddress +128, -7368);
+		do Memory.poke(memAddress +160, -3728);
+		do Memory.poke(memAddress +192, -1824);
+		do Memory.poke(memAddress +224, -832);
+		do Memory.poke(memAddress +256, 831);
+		do Memory.poke(memAddress +288, 1823);
+		do Memory.poke(memAddress +320, 3727);
+		do Memory.poke(memAddress +352, 7367);
+		do Memory.poke(memAddress +384, 14563);
+		do Memory.poke(memAddress +416, 28913);
+		do Memory.poke(memAddress +448, 24825);
+		do Memory.poke(memAddress +480, 255);
+		return;
+	}
 
-            /** Draws BlackGoal */
-    method void BlackGoal(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * y) + Math.divide(x, 16);
-        do Memory.poke(memAddress +0, -1);
-        do Memory.poke(memAddress +32, -12289);
-        do Memory.poke(memAddress +64, -10241);
-        do Memory.poke(memAddress +96, -9217);
-        do Memory.poke(memAddress +128, -8705);
-        do Memory.poke(memAddress +160, -12545);
-        do Memory.poke(memAddress +192, -4225);
-        do Memory.poke(memAddress +224, -6209);
-        do Memory.poke(memAddress +256, -3105);
-        do Memory.poke(memAddress +288, -1585);
-        do Memory.poke(memAddress +320, -889);
-        do Memory.poke(memAddress +352, -445);
-        do Memory.poke(memAddress +384, -31);
-        do Memory.poke(memAddress +416, -13);
-        do Memory.poke(memAddress +448, -1);
-        do Memory.poke(memAddress +480, -1);
-        return;
-    }
+	/* Draws white goal */
+	function void drawWhiteGoal(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 6144);
+		do Memory.poke(memAddress +32, 5120);
+		do Memory.poke(memAddress +64, 4608);
+		do Memory.poke(memAddress +96, 4352);
+		do Memory.poke(memAddress +128, 6272);
+		do Memory.poke(memAddress +160, 2112);
+		do Memory.poke(memAddress +192, 3104);
+		do Memory.poke(memAddress +224, 1552);
+		do Memory.poke(memAddress +256, 792);
+		do Memory.poke(memAddress +288, 444);
+		do Memory.poke(memAddress +320, 222);
+		do Memory.poke(memAddress +352, 15);
+		do Memory.poke(memAddress +384, 6);
+		return;
+	}
 
+	/* Draws black goal */
+	function void drawBlackGoal(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -12289);
+		do Memory.poke(memAddress +64, -10241);
+		do Memory.poke(memAddress +96, -9217);
+		do Memory.poke(memAddress +128, -8705);
+		do Memory.poke(memAddress +160, -12545);
+		do Memory.poke(memAddress +192, -4225);
+		do Memory.poke(memAddress +224, -6209);
+		do Memory.poke(memAddress +256, -3105);
+		do Memory.poke(memAddress +288, -1585);
+		do Memory.poke(memAddress +320, -889);
+		do Memory.poke(memAddress +352, -445);
+		do Memory.poke(memAddress +384, -31);
+		do Memory.poke(memAddress +416, -13);
+		do Memory.poke(memAddress +448, -1);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	/* Draws white block */
+	function void drawWhiteBlock(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 0);
+		do Memory.poke(memAddress +32, 0);
+		do Memory.poke(memAddress +64, 0);
+		do Memory.poke(memAddress +96, 0);
+		do Memory.poke(memAddress +128,0);
+		do Memory.poke(memAddress +160,0);
+		do Memory.poke(memAddress +192,0);
+		do Memory.poke(memAddress +224,0);
+		do Memory.poke(memAddress +256,0);
+		do Memory.poke(memAddress +288,0);
+		do Memory.poke(memAddress +320,0);
+		do Memory.poke(memAddress +352,0);
+		do Memory.poke(memAddress +384,0);
+		do Memory.poke(memAddress +416,0);
+		do Memory.poke(memAddress +448,0);
+		do Memory.poke(memAddress +480,0);
+		return;
+	}
+
+	/* Draws black block */
+	function void drawBlackBlock(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -1);
+		do Memory.poke(memAddress +64, -1);
+		do Memory.poke(memAddress +96, -1);
+		do Memory.poke(memAddress +128,-1);
+		do Memory.poke(memAddress +160,-1);
+		do Memory.poke(memAddress +192,-1);
+		do Memory.poke(memAddress +224,-1);
+		do Memory.poke(memAddress +256,-1);
+		do Memory.poke(memAddress +288,-1);
+		do Memory.poke(memAddress +320,-1);
+		do Memory.poke(memAddress +352,-1);
+		do Memory.poke(memAddress +384,-1);
+		do Memory.poke(memAddress +416,-1);
+		do Memory.poke(memAddress +448,-1);
+		do Memory.poke(memAddress +480,-1);
+		return;
+	}
+
+	function void drawFHWhite(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, 0);
+		do Memory.poke(memAddress +32, 25470);
+		do Memory.poke(memAddress +64, 25470);
+		do Memory.poke(memAddress +96, 25350);
+		do Memory.poke(memAddress +128, 25350);
+		do Memory.poke(memAddress +160, 25350);
+		do Memory.poke(memAddress +192, 25350);
+		do Memory.poke(memAddress +224, 32638);
+		do Memory.poke(memAddress +256, 32638);
+		do Memory.poke(memAddress +288, 25350);
+		do Memory.poke(memAddress +320, 25350);
+		do Memory.poke(memAddress +352, 25350);
+		do Memory.poke(memAddress +384, 25350);
+		do Memory.poke(memAddress +416, 25350);
+		do Memory.poke(memAddress +448, 25350);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	function void drawFHBlack(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, -1);
+		do Memory.poke(memAddress +32, -25471);
+		do Memory.poke(memAddress +64, -25471);
+		do Memory.poke(memAddress +96, -25351);
+		do Memory.poke(memAddress +128, -25351);
+		do Memory.poke(memAddress +160, -25351);
+		do Memory.poke(memAddress +192, -25351);
+		do Memory.poke(memAddress +224, -32639);
+		do Memory.poke(memAddress +256, -32639);
+		do Memory.poke(memAddress +288, -25351);
+		do Memory.poke(memAddress +320, -25351);
+		do Memory.poke(memAddress +352, -25351);
+		do Memory.poke(memAddress +384, -25351);
+		do Memory.poke(memAddress +416, -25351);
+		do Memory.poke(memAddress +448, -25351);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	function void drawNTWhite(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, 0);
+		do Memory.poke(memAddress +32, 32766);
+		do Memory.poke(memAddress +64, 32766);
+		do Memory.poke(memAddress +96, 3072);
+		do Memory.poke(memAddress +128, 3462);
+		do Memory.poke(memAddress +160, 3470);
+		do Memory.poke(memAddress +192, 3470);
+		do Memory.poke(memAddress +224, 3486);
+		do Memory.poke(memAddress +256, 3486);
+		do Memory.poke(memAddress +288, 3510);
+		do Memory.poke(memAddress +320, 3574);
+		do Memory.poke(memAddress +352, 3558);
+		do Memory.poke(memAddress +384, 3526);
+		do Memory.poke(memAddress +416, 3526);
+		do Memory.poke(memAddress +448, 3462);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	function void drawNTBlack(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, -1);
+		do Memory.poke(memAddress +32, -32767);
+		do Memory.poke(memAddress +64, -32767);
+		do Memory.poke(memAddress +96, -3073);
+		do Memory.poke(memAddress +128, -3463);
+		do Memory.poke(memAddress +160, -3471);
+		do Memory.poke(memAddress +192, -3471);
+		do Memory.poke(memAddress +224, -3487);
+		do Memory.poke(memAddress +256, -3487);
+		do Memory.poke(memAddress +288, -3511);
+		do Memory.poke(memAddress +320, -3575);
+		do Memory.poke(memAddress +352, -3559);
+		do Memory.poke(memAddress +384, -3527);
+		do Memory.poke(memAddress +416, -3527);
+		do Memory.poke(memAddress +448, -3463);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	function void drawBlock(char c, int x, int y) {
+		// Draw White Tile
+		if((c = 65) | (c = 67)){
+			do Graphics.drawWhiteBlock(x, y);
+		}
+
+		// Draw Black Tile
+		if((c = 66) | (c = 68)){
+			do Graphics.drawBlackBlock(x, y);
+		}
+
+		// Draw White Terrain
+		if(c = 69){
+			do Graphics.drawWhiteTerrain(x, y);
+		}
+
+		// Draw Black Terrain
+		if(c = 70){
+			do Graphics.drawBlackTerrain(x, y);
+		}
+
+		// Draw Immovable1
+		if(c = 71){
+			do Graphics.drawImmovable1(x, y);
+		}
+
+		// Draw Immovable2
+		if(c = 72){
+			do Graphics.drawImmovable2(x, y);
+		}
+
+		// Draw White Goal
+		if(c = 73){
+			do Graphics.drawWhiteGoal(x, y);
+		}
+
+		// Draw Black Goal
+		if(c = 74){
+			do Graphics.drawBlackGoal(x, y);
+		}
+
+		return;
+	}
 
 }
