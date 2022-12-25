@@ -16,8 +16,6 @@ class Main {
 
 		do Control.init(0, 2, 0, 13);
 
-		do Control.draw();
-
 		let end = 0;
 		while (end = 0) {
 			let end = Control.move();

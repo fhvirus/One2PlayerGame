@@ -23,38 +23,8 @@ class Control {
 		let whitePlayerX = whitePlayerSX;
 		let whitePlayerY = whitePlayerSY;
 		let map = initialMap;
-		return;
-	}
-
-	function void draw() {
-		let tmp = map[whitePlayerY];
-		do tmp.setCharAt(whitePlayerX, 67);
-		let map[whitePlayerY] = tmp;
-		do Output.moveCursor(0, 0);
-		do Output.printString(map[whitePlayerY]);
 		do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
-
-		let tmp = map[blackPlayerY];
-		do tmp.setCharAt(blackPlayerX, 68);
-		let map[blackPlayerY] = tmp;
-		do Output.moveCursor(1, 0);
-		do Output.printString(map[blackPlayerY]);
 		do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
-
-		return;
-	}
-
-	function void undraw() {
-		let tmp = map[whitePlayerY];
-		do tmp.setCharAt(whitePlayerX, 65);
-		let map[whitePlayerY] = tmp;
-		do Graphics.drawBlock(tmp.charAt(whitePlayerX), whitePlayerX, whitePlayerY);
-
-		let tmp = map[blackPlayerY];
-		do tmp.setCharAt(blackPlayerX, 66);
-		let map[blackPlayerY] = tmp;
-		do Graphics.drawBlock(tmp.charAt(blackPlayerX), blackPlayerX, blackPlayerY);
-
 		return;
 	}
 
@@ -73,6 +43,157 @@ class Control {
 		return (tmp.charAt(x) = 66);
 	}
 
+	function void moveWhite(int dx, int dy) {
+		var int ex, ey, br;
+		let ex = whitePlayerX + dx;
+		let ey = whitePlayerY + dy;
+		if (ex = -1) {
+			let ex = 31;
+		}
+		if (ex = 32) {
+			let ex = 0;
+		}
+		if (ey = -1) {
+			let ey = 15;
+		}
+		if (ey = 16) {
+			let ey = 0;
+		}
+		let br = 0;
+
+		while ((-1 < ex) & (ex < 32) & (-1 < ey) & (ey < 16) & (br = 0)) {
+			let tmp = map[ey];
+			if (tmp.charAt(ex) = 65) {
+				let br = 1;
+			} else {
+				if (tmp.charAt(ex) = 66) {
+					let ex = ex + dx;
+					let ey = ey + dy;
+					if (ex = -1) {
+						let ex = 31;
+					}
+					if (ex = 32) {
+						let ex = 0;
+					}
+					if (ey = -1) {
+						let ey = 15;
+					}
+					if (ey = 16) {
+						let ey = 0;
+					}
+				} else {
+					let br = 2;
+				}
+			}
+		}
+
+		if (br = 1) {
+			// undraw
+			let tmp = map[whitePlayerY];
+			do tmp.setCharAt(whitePlayerX, 65);
+			let map[whitePlayerY] = tmp;
+			do Graphics.drawBlock(65, whitePlayerX, whitePlayerY);
+
+			// push block
+			let tmp = map[ey];
+			do tmp.setCharAt(ex, 66);
+			do Graphics.drawBlock(66, ex, ey);
+			let map[ey] = tmp;
+
+			let whitePlayerX = whitePlayerX + dx;
+			let whitePlayerY = whitePlayerY + dy;
+
+			let tmp = map[whitePlayerY];
+			do tmp.setCharAt(whitePlayerX, 65);
+			do Graphics.drawBlock(65, whitePlayerX, whitePlayerY);
+			let map[whitePlayerY] = tmp;
+
+			// draw
+			let tmp = map[whitePlayerY];
+			do tmp.setCharAt(whitePlayerX, 67);
+			let map[whitePlayerY] = tmp;
+			do Output.moveCursor(0, 0);
+			do Output.printString(map[whitePlayerY]);
+			do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
+		}
+		return;
+	}
+	function void moveBlack(int dx, int dy) {
+		var int ex, ey, br;
+		let ex = blackPlayerX + dx;
+		let ey = blackPlayerY + dy;
+		if (ex = -1) {
+			let ex = 31;
+		}
+		if (ex = 32) {
+			let ex = 0;
+		}
+		if (ey = -1) {
+			let ey = 15;
+		}
+		if (ey = 16) {
+			let ey = 0;
+		}
+		let br = 0;
+
+		while ((-1 < ex) & (ex < 32) & (-1 < ey) & (ey < 16) & (br = 0)) {
+			let tmp = map[ey];
+			if (tmp.charAt(ex) = 66) {
+				let br = 1;
+			} else {
+				if (tmp.charAt(ex) = 65) {
+					let ex = ex + dx;
+					let ey = ey + dy;
+					if (ex = -1) {
+						let ex = 31;
+					}
+					if (ex = 32) {
+						let ex = 0;
+					}
+					if (ey = -1) {
+						let ey = 15;
+					}
+					if (ey = 16) {
+						let ey = 0;
+					}
+				} else {
+					let br = 2;
+				}
+			}
+		}
+
+		if (br = 1) {
+			// undraw
+			let tmp = map[blackPlayerY];
+			do tmp.setCharAt(blackPlayerX, 66);
+			let map[blackPlayerY] = tmp;
+			do Graphics.drawBlock(66, blackPlayerX, blackPlayerY);
+
+			// push block
+			let tmp = map[ey];
+			do tmp.setCharAt(ex, 65);
+			do Graphics.drawBlock(65, ex, ey);
+			let map[ey] = tmp;
+
+			let blackPlayerX = blackPlayerX + dx;
+			let blackPlayerY = blackPlayerY + dy;
+
+			let tmp = map[blackPlayerY];
+			do tmp.setCharAt(blackPlayerX, 66);
+			do Graphics.drawBlock(66, blackPlayerX, blackPlayerY);
+			let map[blackPlayerY] = tmp;
+
+			// draw
+			let tmp = map[blackPlayerY];
+			do tmp.setCharAt(blackPlayerX, 68);
+			let map[blackPlayerY] = tmp;
+			do Output.moveCursor(1, 0);
+			do Output.printString(map[blackPlayerY]);
+			do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
+		}
+		return;
+	}
+
 	function int move() {
 		while (~(key = 0)) {
 			let key = Keyboard.keyPressed();
@@ -87,8 +208,6 @@ class Control {
 			return 1;
 		}
 
-		do Control.undraw();
-
 		// R: reset position
 		if (key = 82) {
 			do Control.reset();
@@ -97,35 +216,33 @@ class Control {
 		// WASD:  87  65  83  68
 		// ULDR: 131 130 133 132
 
-		// Black Player: WASD
-		if ((key = 87) & Control.validBlack(blackPlayerX, blackPlayerY - 1)) {
-			let blackPlayerY = blackPlayerY - 1;
-		}
-		if ((key = 65) & Control.validBlack(blackPlayerX - 1, blackPlayerY)) {
-			let blackPlayerX = blackPlayerX - 1;
-		}
-		if ((key = 83) & Control.validBlack(blackPlayerX, blackPlayerY + 1)) {
-			let blackPlayerY = blackPlayerY + 1;
-		}
-		if ((key = 68) & Control.validBlack(blackPlayerX + 1, blackPlayerY)) {
-			let blackPlayerX = blackPlayerX + 1;
-		}
-
 		// White Player: Arrow ULDR
-		if ((key = 131) & Control.validWhite(whitePlayerX, whitePlayerY - 1)) {
-			let whitePlayerY = whitePlayerY - 1;
+		if (key = 131) {
+			do Control.moveWhite(0, -1);
 		}
-		if ((key = 130) & Control.validWhite(whitePlayerX - 1, whitePlayerY)) {
-			let whitePlayerX = whitePlayerX - 1;
+		if (key = 130) {
+			do Control.moveWhite(-1, 0);
 		}
-		if ((key = 133) & Control.validWhite(whitePlayerX, whitePlayerY + 1)) {
-			let whitePlayerY = whitePlayerY + 1;
+		if (key = 133) {
+			do Control.moveWhite(0, 1);
 		}
-		if ((key = 132) & Control.validWhite(whitePlayerX + 1, whitePlayerY)) {
-			let whitePlayerX = whitePlayerX + 1;
+		if (key = 132) {
+			do Control.moveWhite(1, 0);
 		}
 
-		do Control.draw();
+		// Black Player: WASD
+		if (key = 87) {
+			do Control.moveBlack(0, -1);
+		}
+		if (key = 65) {
+			do Control.moveBlack(-1, 0);
+		}
+		if (key = 83) {
+			do Control.moveBlack(0, 1);
+		}
+		if (key = 68) {
+			do Control.moveBlack(1, 0);
+		}
 
 		// do Output.printString("(");
 		// do Output.printInt(blackPlayerX);
