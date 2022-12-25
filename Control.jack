@@ -27,16 +27,34 @@ class Control {
 	}
 
 	function void draw() {
-		do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
+		let tmp = map[whitePlayerY];
+		do tmp.setCharAt(whitePlayerX, 67);
+		let map[whitePlayerY] = tmp;
+		do Output.moveCursor(0, 0);
+		do Output.printString(map[whitePlayerY]);
 		do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
+
+		let tmp = map[blackPlayerY];
+		do tmp.setCharAt(blackPlayerX, 68);
+		let map[blackPlayerY] = tmp;
+		do Output.moveCursor(1, 0);
+		do Output.printString(map[blackPlayerY]);
+		do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
+
 		return;
 	}
 
 	function void undraw() {
-		let tmp = map[blackPlayerY];
-		do Graphics.drawBlock(tmp.charAt(blackPlayerX), blackPlayerX, blackPlayerY);
 		let tmp = map[whitePlayerY];
+		do tmp.setCharAt(whitePlayerX, 65);
+		let map[whitePlayerY] = tmp;
 		do Graphics.drawBlock(tmp.charAt(whitePlayerX), whitePlayerX, whitePlayerY);
+
+		let tmp = map[blackPlayerY];
+		do tmp.setCharAt(blackPlayerX, 66);
+		let map[blackPlayerY] = tmp;
+		do Graphics.drawBlock(tmp.charAt(blackPlayerX), blackPlayerX, blackPlayerY);
+
 		return;
 	}
 

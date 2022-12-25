@@ -14,7 +14,7 @@ class Main {
 		do Levels.init();
 		do Levels.DrawTutorial1();
 
-		do Control.init(0, 0, 0, 13);
+		do Control.init(0, 2, 0, 13);
 
 		do Control.draw();
 
