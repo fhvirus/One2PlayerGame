@@ -14,34 +14,6 @@
 
 class DrawMap {
 
-
-    // Draw Tutorial 1
-    method void DrawTutorial1() {
-        var string message;
-        do method DrawMap(levels.Tutorial1Map);
-                
-        let message = String.new(30);
-        do Output.moveCursor(0,12);
-        let message = "Whatssap nigga";
-        do Output.printString(message);
-       
-    }
-
-    // Draw Tutorial 2
-    method void DrawTutorial2() {
-        do method DrawMap(levels.Tutorial2Map);
-    }
-
-    // Draw Free Map
-    method void DrawFreeMap() {
-        do method DrawMap(levels.FreeMap);
-    }
-
-    // Draw Level 1
-    method void DrawLevel1() {
-        do method DrawMap(levels.Level1Map);
-    }
-
     method void DrawMap(Array LevelMap) {
         do Screen.clearScreen();
         
