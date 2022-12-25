@@ -37,7 +37,7 @@ class Levels {
             
 
 
-        let Tutorial1Map = Array.new(16);
+		let Tutorial1Map = Array.new(16);
 
         let Tutorial1Map[0]  = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         let Tutorial1Map[1]  = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
@@ -66,8 +66,8 @@ class Levels {
 
 
 
-        // Map of Tutorail 2
-        let Tutorial1Map = Array.new(16);
+		// Map of Tutorial 2
+		let Tutorial1Map = Array.new(16);
 
         let Tutorial1Map[0]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
         let Tutorial1Map[1]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
@@ -126,8 +126,8 @@ class Levels {
 
 
 
-        // Map of Level 1
-        let Level1Map = Array.new(16);
+		// Map of Level 1
+		let Level1Map = Array.new(16);
 
         let Level1Map[0]  = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
         let Level1Map[1]  = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
@@ -154,6 +154,7 @@ class Levels {
         let GoalXIndex[3] = 14;
         let GoalYIndex[3] = 9;
 
-    }
+		return;
+	}
 }
 
