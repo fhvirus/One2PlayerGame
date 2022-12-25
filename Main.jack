@@ -1,7 +1,28 @@
 class Main {
 
 	function void main() {
+
+		var int end;
+
+		var String s;
+		var int i;
+
 		do Graphics.test();
+
+		do Graphics.init();
+
+		do Levels.init();
+		do Levels.DrawTutorial1();
+
+		do Control.init(0, 2, 0, 13);
+
+		do Control.draw();
+
+		let end = 0;
+		while (end = 0) {
+			let end = Control.move();
+		}
+
 		return;
 	}
 

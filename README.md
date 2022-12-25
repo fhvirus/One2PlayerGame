@@ -1,5 +1,12 @@
 # One2PlayerGame
 
+Control:
+- Currently using `TestGraphic` to render.
+- `void init()`: Set players' initial positions and draw them. Call after `Graphic` and map are initialized.
+- `int move()`: Wait until a key is pressed, then move player accordingly.
+	- 0 for valid move.
+	- 1 for quit (`Q`).
+
 ### TODO
 
 Rodent's revenge but with two player.
@@ -10,22 +17,22 @@ Reach the same goal.
 
 Can push a bunch of boxes if there is no 1) terrain 2) the other character.
 
-Files:
+## TODO
 
 - Graphics
-	- Graphics
-		- Methods to draw objects
+	- Methods to draw objects
 	- Object
 		- Array bit of Blocks with different pattern
 
 - Players
-	- Control
-	- Determine
-		- Do we have enough space to save a simplified map?
+	- [done] Basic control with WASD and arrow keys.
+	- [done] Players moving inside border without overlapping.
+	- Refactor code (move to a separate file)
+	- Maybe we need to make basic structures for maps.
 
 - Maps
-	- Tutorials
-	- Free map
+	- [done]Tutorials
+	- [done]Free map
 	- Challenges
 
 - Main

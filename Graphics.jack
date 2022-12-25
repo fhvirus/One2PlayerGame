@@ -14,9 +14,7 @@ class Graphics {
 	/* Test all blocks */
 	function void test() {
 		do Graphics.init();
-		do Graphics.drawWhitePlayer(0, 0);
-		do Graphics.drawBlackPlayer(1, 0);
-		do Graphics.drawWhiteTerrain(2, 0);
+		do Graphics.drawWhitePlayer(0, 0); do Graphics.drawBlackPlayer(1, 0); do Graphics.drawWhiteTerrain(2, 0);
 		do Graphics.drawBlackTerrain(3, 0);
 		do Graphics.drawWhiteGoal(4, 0);
 		do Graphics.drawBlackGoal(5, 0);
@@ -26,6 +24,7 @@ class Graphics {
 		do Graphics.drawFHBlack(9, 0);
 		do Graphics.drawNTWhite(10, 0);
 		do Graphics.drawNTBlack(11, 0);
+		return;
 	}
 
 	/* Draws a single object with x, y coordinates & Array bitmap */
@@ -180,47 +179,138 @@ class Graphics {
 		return;
 	}
 
-        /** Draws WhiteGoal */
-    method void drawWhiteGoal(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
-        do Memory.poke(memAddress +0, 4094);
-        do Memory.poke(memAddress +32, 4097);
-        do Memory.poke(memAddress +64, 10226);
-        do Memory.poke(memAddress +96, 16388);
-        do Memory.poke(memAddress +128, -24632);
-        do Memory.poke(memAddress +160, -32752);
-        do Memory.poke(memAddress +192, -16);
-        do Memory.poke(memAddress +224, -32744);
-        do Memory.poke(memAddress +256, -16372);
-        do Memory.poke(memAddress +288, 24582);
-        do Memory.poke(memAddress +320, 12291);
-        do Memory.poke(memAddress +352, 8191);
-        return;
-    }
+	/* Draws white goal */
+	function void drawWhiteGoal(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 6144);
+		do Memory.poke(memAddress +32, 5120);
+		do Memory.poke(memAddress +64, 4608);
+		do Memory.poke(memAddress +96, 4352);
+		do Memory.poke(memAddress +128, 6272);
+		do Memory.poke(memAddress +160, 2112);
+		do Memory.poke(memAddress +192, 3104);
+		do Memory.poke(memAddress +224, 1552);
+		do Memory.poke(memAddress +256, 792);
+		do Memory.poke(memAddress +288, 444);
+		do Memory.poke(memAddress +320, 222);
+		do Memory.poke(memAddress +352, 15);
+		do Memory.poke(memAddress +384, 6);
+		return;
+	}
 
-            /** Draws BlackGoal */
-    method void drawBlackGoal(int xCoordinate, int yCoordinate) {
-        var int memAddress; 
-        let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
-        do Memory.poke(memAddress +0, -1);
-        do Memory.poke(memAddress +32, -1);
-        do Memory.poke(memAddress +64, -4095);
-        do Memory.poke(memAddress +96, -4098);
-        do Memory.poke(memAddress +128, -10227);
-        do Memory.poke(memAddress +160, -16389);
-        do Memory.poke(memAddress +192, 24631);
-        do Memory.poke(memAddress +224, 32751);
-        do Memory.poke(memAddress +256, 15);
-        do Memory.poke(memAddress +288, 32743);
-        do Memory.poke(memAddress +320, 16371);
-        do Memory.poke(memAddress +352, -24583);
-        do Memory.poke(memAddress +384, -12292);
-        do Memory.poke(memAddress +416, -8192);
-        do Memory.poke(memAddress +448, -1);
-        do Memory.poke(memAddress +480, -1);
-        return;
-    }
+	/* Draws black goal */
+	function void drawBlackGoal(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -12289);
+		do Memory.poke(memAddress +64, -10241);
+		do Memory.poke(memAddress +96, -9217);
+		do Memory.poke(memAddress +128, -8705);
+		do Memory.poke(memAddress +160, -12545);
+		do Memory.poke(memAddress +192, -4225);
+		do Memory.poke(memAddress +224, -6209);
+		do Memory.poke(memAddress +256, -3105);
+		do Memory.poke(memAddress +288, -1585);
+		do Memory.poke(memAddress +320, -889);
+		do Memory.poke(memAddress +352, -445);
+		do Memory.poke(memAddress +384, -31);
+		do Memory.poke(memAddress +416, -13);
+		do Memory.poke(memAddress +448, -1);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	/* Draws white block */
+	function void drawWhiteBlock(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, 0);
+		do Memory.poke(memAddress +32, 0);
+		do Memory.poke(memAddress +64, 0);
+		do Memory.poke(memAddress +96, 0);
+		do Memory.poke(memAddress +128,0);
+		do Memory.poke(memAddress +160,0);
+		do Memory.poke(memAddress +192,0);
+		do Memory.poke(memAddress +224,0);
+		do Memory.poke(memAddress +256,0);
+		do Memory.poke(memAddress +288,0);
+		do Memory.poke(memAddress +320,0);
+		do Memory.poke(memAddress +352,0);
+		do Memory.poke(memAddress +384,0);
+		do Memory.poke(memAddress +416,0);
+		do Memory.poke(memAddress +448,0);
+		do Memory.poke(memAddress +480,0);
+		return;
+	}
+
+	/* Draws black block */
+	function void drawBlackBlock(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress +0, -1);
+		do Memory.poke(memAddress +32, -1);
+		do Memory.poke(memAddress +64, -1);
+		do Memory.poke(memAddress +96, -1);
+		do Memory.poke(memAddress +128,-1);
+		do Memory.poke(memAddress +160,-1);
+		do Memory.poke(memAddress +192,-1);
+		do Memory.poke(memAddress +224,-1);
+		do Memory.poke(memAddress +256,-1);
+		do Memory.poke(memAddress +288,-1);
+		do Memory.poke(memAddress +320,-1);
+		do Memory.poke(memAddress +352,-1);
+		do Memory.poke(memAddress +384,-1);
+		do Memory.poke(memAddress +416,-1);
+		do Memory.poke(memAddress +448,-1);
+		do Memory.poke(memAddress +480,-1);
+		return;
+	}
+
+	function void drawFHWhite(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, 0);
+		do Memory.poke(memAddress +32, 25470);
+		do Memory.poke(memAddress +64, 25470);
+		do Memory.poke(memAddress +96, 25350);
+		do Memory.poke(memAddress +128, 25350);
+		do Memory.poke(memAddress +160, 25350);
+		do Memory.poke(memAddress +192, 25350);
+		do Memory.poke(memAddress +224, 32638);
+		do Memory.poke(memAddress +256, 32638);
+		do Memory.poke(memAddress +288, 25350);
+		do Memory.poke(memAddress +320, 25350);
+		do Memory.poke(memAddress +352, 25350);
+		do Memory.poke(memAddress +384, 25350);
+		do Memory.poke(memAddress +416, 25350);
+		do Memory.poke(memAddress +448, 25350);
+		do Memory.poke(memAddress +480, 0);
+		return;
+	}
+
+	function void drawFHBlack(int xCoordinate, int yCoordinate) {
+		var int memAddress; 
+		let memAddress = SCREEN_BASE_ADDRESS + (32 * 16 * yCoordinate) + xCoordinate;
+		do Memory.poke(memAddress, -1);
+		do Memory.poke(memAddress +32, -25471);
+		do Memory.poke(memAddress +64, -25471);
+		do Memory.poke(memAddress +96, -25351);
+		do Memory.poke(memAddress +128, -25351);
+		do Memory.poke(memAddress +160, -25351);
+		do Memory.poke(memAddress +192, -25351);
+		do Memory.poke(memAddress +224, -32639);
+		do Memory.poke(memAddress +256, -32639);
+		do Memory.poke(memAddress +288, -25351);
+		do Memory.poke(memAddress +320, -25351);
+		do Memory.poke(memAddress +352, -25351);
+		do Memory.poke(memAddress +384, -25351);
+		do Memory.poke(memAddress +416, -25351);
+		do Memory.poke(memAddress +448, -25351);
+		do Memory.poke(memAddress +480, -1);
+		return;
+	}
 
 	function void drawNTWhite(int xCoordinate, int yCoordinate) {
 		var int memAddress; 
@@ -263,6 +353,50 @@ class Graphics {
 		do Memory.poke(memAddress +416, -3527);
 		do Memory.poke(memAddress +448, -3463);
 		do Memory.poke(memAddress +480, -1);
+		return;
+	}
+
+	function void drawBlock(char c, int x, int y) {
+		// Draw White Tile
+		if((c = 65) | (c = 67)){
+			do Graphics.drawWhiteBlock(x, y);
+		}
+
+		// Draw Black Tile
+		if((c = 66) | (c = 68)){
+			do Graphics.drawBlackBlock(x, y);
+		}
+
+		// Draw White Terrain
+		if(c = 69){
+			do Graphics.drawWhiteTerrain(x, y);
+		}
+
+		// Draw Black Terrain
+		if(c = 70){
+			do Graphics.drawBlackTerrain(x, y);
+		}
+
+		// Draw Immovable1
+		if(c = 71){
+			do Graphics.drawImmovable1(x, y);
+		}
+
+		// Draw Immovable2
+		if(c = 72){
+			do Graphics.drawImmovable2(x, y);
+		}
+
+		// Draw White Goal
+		if(c = 73){
+			do Graphics.drawWhiteGoal(x, y);
+		}
+
+		// Draw Black Goal
+		if(c = 74){
+			do Graphics.drawBlackGoal(x, y);
+		}
+
 		return;
 	}
 

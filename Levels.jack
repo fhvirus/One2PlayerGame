@@ -25,6 +25,10 @@ class Levels {
     static Array GoalXIndex;
     static Array GoalYIndex;
 
+	function Array getTutorial1Map() {
+		return Tutorial1Map;
+	}
+
     // Initialize Level Maps
     function void init() {
         // Map of Tutorial 1
@@ -67,24 +71,24 @@ class Levels {
 
 
 		// Map of Tutorial 2
-		let Tutorial1Map = Array.new(16);
+		let Tutorial2Map = Array.new(16);
 
-        let Tutorial1Map[0]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[1]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[2]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[3]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-        let Tutorial1Map[4]  = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        let Tutorial1Map[5]  = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        let Tutorial1Map[6]  = "JBBBABBBHBBBBBBBBBBBBBBAAABBBBBB";
-        let Tutorial1Map[7]  = "AAABBBABBBABBBBBBBBBBBBBHHHHHHHB";
-        let Tutorial1Map[8]  = "AAAAAAAAAAABBBBBBBBBBABBFFFFBBBB";
-        let Tutorial1Map[9]  = "AAAAAAAAAAABBBAAABAABBABFFFFBFFF";
-        let Tutorial1Map[10] = "AAAABBBAAAABBBAAABAABBBBFFFFBBBB";
-        let Tutorial1Map[11] = "AAAABBBAAAABBBAAABBBBBCBFFFFFFFB";
-        let Tutorial1Map[12] = "AAAAAAAAAAABBBBBBBAABBABFFFFFFFB";
-        let Tutorial1Map[13] = "BBBBBBBBBBBAAAAAAAAAAAAAEEEEEEED";
-        let Tutorial1Map[14] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
-        let Tutorial1Map[15] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial2Map[0]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial2Map[1]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial2Map[2]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial2Map[3]  = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+        let Tutorial2Map[4]  = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial2Map[5]  = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial2Map[6]  = "JBBBABBBHBBBBBBBBBBBBBBAAABBBBBB";
+        let Tutorial2Map[7]  = "AAABBBABBBABBBBBBBBBBBBBHHHHHHHB";
+        let Tutorial2Map[8]  = "AAAAAAAAAAABBBBBBBBBBABBFFFFBBBB";
+        let Tutorial2Map[9]  = "AAAAAAAAAAABBBAAABAABBABFFFFBFFF";
+        let Tutorial2Map[10] = "AAAABBBAAAABBBAAABAABBBBFFFFBBBB";
+        let Tutorial2Map[11] = "AAAABBBAAAABBBAAABBBBBCBFFFFFFFB";
+        let Tutorial2Map[12] = "AAAAAAAAAAABBBBBBBAABBABFFFFFFFB";
+        let Tutorial2Map[13] = "BBBBBBBBBBBAAAAAAAAAAAAAEEEEEEED";
+        let Tutorial2Map[14] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
+        let Tutorial2Map[15] = "FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF";
 
         //  Index of player & Goal in Tutorial 2
         let WhiteXIndex[1] = 31;
@@ -154,6 +158,10 @@ class Levels {
         let GoalXIndex[3] = 14;
         let GoalYIndex[3] = 9;
 
+		return;
+	}
+	function void DrawTutorial1() {
+		do DrawMap.DrawMap(Tutorial1Map);
 		return;
 	}
 }
