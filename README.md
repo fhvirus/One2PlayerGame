@@ -40,6 +40,8 @@ Can push a bunch of boxes if there is no 1) terrain 2) the other character.
 - Game
 	- Reset & Counter
 
+- Level
+	- Coordinate of 2 players
 ### Spec
 // Blocks are 16x16 because Array(16) is easier
 
