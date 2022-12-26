@@ -126,10 +126,10 @@ class Levels {
 		let GoalYIndex[0] = 6;
 
 		//  Index of player & Goal in Tutorial 2
-		let WhiteXIndex[1] = 31;
-		let WhiteYIndex[1] = 13;
-		let BlackXIndex[1] = 22;
-		let BlackYIndex[1] = 11;
+		let WhiteXIndex[1] = 22;
+		let WhiteYIndex[1] = 11;
+		let BlackXIndex[1] = 31;
+		let BlackYIndex[1] = 13;
 		let GoalXIndex[1] = 0;
 		let GoalYIndex[1] = 6;
 
