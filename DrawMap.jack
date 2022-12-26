@@ -36,7 +36,7 @@ class DrawMap {
 
 				let CharIndex = CharIndex + 1;
 				let x = x + 1;
-				do Sys.wait(2);
+				// do Sys.wait(2);
 			}
 
 			let RowIndex = RowIndex + 1;
@@ -47,4 +47,3 @@ class DrawMap {
 		return;
 	}
 }
-

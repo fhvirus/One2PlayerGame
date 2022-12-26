@@ -2,7 +2,7 @@ class Main {
 
 	function void main() {
 
-		var int end;
+		var int end, lvl;
 
 		var String s;
 		var int i;
@@ -15,11 +15,21 @@ class Main {
 
 		do Levels.init();
 
-		do Control.init(-1, -1, 0, 13, 0);
+		let lvl = 0;
 
-		let end = 0;
-		while (end = 0) {
-			let end = Control.move();
+		while (lvl < 4) {
+
+			do Control.init(lvl);
+
+			let end = 0;
+			while (end = 0) {
+				let end = Control.move();
+				if (Control.checkGoal()) {
+					let end = 2;
+				}
+			}
+
+			let lvl = lvl + 1;
 		}
 
 		return;
