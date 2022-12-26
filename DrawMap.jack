@@ -21,8 +21,6 @@ class DrawMap {
 		var String MapRow;
 		var int CharIndex;
 
-		do Screen.clearScreen();
-
 		let RowIndex = 0;
 		let x = 0;
 		let y = 0;
@@ -38,6 +36,7 @@ class DrawMap {
 
 				let CharIndex = CharIndex + 1;
 				let x = x + 1;
+				do Sys.wait(2);
 			}
 
 			let RowIndex = RowIndex + 1;

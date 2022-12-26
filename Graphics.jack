@@ -27,6 +27,37 @@ class Graphics {
 		return;
 	}
 
+	function void loadingScreen() {
+		var int x, y, d;
+
+		let y = 0;
+		while (y < 16) {
+			let x = 0;
+			while (x < 32) {
+				let d = x + y;
+				let d = d - ((d / 4) * 4);
+				if (d < 3) {
+					if (d = 1) {
+						do Graphics.drawFHWhite(x, y);
+					} else {
+						do Graphics.drawFHBlack(x, y);
+					}
+				} else {
+					if (d = 3) {
+						do Graphics.drawNTWhite(x, y);
+					} else {
+						do Graphics.drawNTBlack(x, y);
+					}
+				}
+				let x = x + 1;
+				do Sys.wait(3);
+			}
+			let y = y + 1;
+		}
+
+		return;
+	}
+
 	/* Draws a single object with x, y coordinates & Array bitmap */
 	function void drawObject(int xCoordinate, int yCoordinate, Array bitmap) {
 		// x, y coordinates are of top left corner in 16*16 bit object
@@ -358,13 +389,20 @@ class Graphics {
 
 	function void drawBlock(char c, int x, int y) {
 		// Draw White Tile
-		if((c = 65) | (c = 67)){
+		if(c = 65) {
 			do Graphics.drawWhiteBlock(x, y);
 		}
 
 		// Draw Black Tile
-		if((c = 66) | (c = 68)){
+		if(c = 66) {
 			do Graphics.drawBlackBlock(x, y);
+		}
+
+		if(c = 67){
+			do Graphics.drawWhitePlayer(x, y);
+		}
+		if(c = 68) {
+			do Graphics.drawBlackPlayer(x, y);
 		}
 
 		// Draw White Terrain

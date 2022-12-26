@@ -1,18 +1,19 @@
 class Control {
-	static int key;
+	static int key, level;
 	static int blackPlayerX, blackPlayerY;
 	static int whitePlayerX, whitePlayerY;
 	static int blackPlayerSX, blackPlayerSY;
 	static int whitePlayerSX, whitePlayerSY;
-	static Array map, initialMap;
+	static Array map;
 	static String tmp;
 
-	function void init(int bsx, int bsy, int wsx, int wsy) {
+	function void init(int bsx, int bsy, int wsx, int wsy, int lvl) {
 		let blackPlayerSX = bsx;
 		let blackPlayerSY = bsy;
 		let whitePlayerSX = wsx;
 		let whitePlayerSY = wsy;
-		let initialMap = Levels.getTutorial1Map();
+		let level = lvl;
+		let map = Array.new(16);
 		do Control.reset();
 		return;
 	}
@@ -22,9 +23,14 @@ class Control {
 		let blackPlayerY = blackPlayerSY;
 		let whitePlayerX = whitePlayerSX;
 		let whitePlayerY = whitePlayerSY;
-		let map = initialMap;
-		do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
-		do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
+		do Levels.setMap(map, level);
+		do DrawMap.DrawMap(map);
+		if (~(whitePlayerX = -1)) {
+			do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
+		}
+		if (~(blackPlayerX = -1)) {
+			do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
+		}
 		return;
 	}
 
@@ -33,18 +39,22 @@ class Control {
 			return false;
 		}
 		let tmp = map[y];
-		return (tmp.charAt(x) = 65);
+		return (tmp.charAt(x) = 65) | (tmp.charAt(x) = 67);
 	}
 	function boolean validBlack(int x, int y) {
 		if (~((-1 < x) & (x < 32) & (-1 < y) & (y < 16))) {
 			return false;
 		}
 		let tmp = map[y];
-		return (tmp.charAt(x) = 66);
+		return (tmp.charAt(x) = 66) | (tmp.charAt(x) = 68);
 	}
 
 	function void moveWhite(int dx, int dy) {
 		var int ex, ey, br;
+		if (~Control.validWhite(whitePlayerX, whitePlayerY)) {
+			return;
+		}
+
 		let ex = whitePlayerX + dx;
 		let ey = whitePlayerY + dy;
 		if (ex = -1) {
@@ -61,7 +71,7 @@ class Control {
 		}
 		let br = 0;
 
-		while ((-1 < ex) & (ex < 32) & (-1 < ey) & (ey < 16) & (br = 0)) {
+		while (br = 0) {
 			let tmp = map[ey];
 			if (tmp.charAt(ex) = 65) {
 				let br = 1;
@@ -102,6 +112,18 @@ class Control {
 
 			let whitePlayerX = whitePlayerX + dx;
 			let whitePlayerY = whitePlayerY + dy;
+			if (whitePlayerX = -1) {
+				let whitePlayerX = 31;
+			}
+			if (whitePlayerX = 32) {
+				let whitePlayerX = 0;
+			}
+			if (whitePlayerY = -1) {
+				let whitePlayerY = 15;
+			}
+			if (whitePlayerY = 16) {
+				let whitePlayerY = 0;
+			}
 
 			let tmp = map[whitePlayerY];
 			do tmp.setCharAt(whitePlayerX, 65);
@@ -118,8 +140,13 @@ class Control {
 		}
 		return;
 	}
+
 	function void moveBlack(int dx, int dy) {
 		var int ex, ey, br;
+		if (~Control.validBlack(blackPlayerX, blackPlayerY)) {
+			return;
+		}
+
 		let ex = blackPlayerX + dx;
 		let ey = blackPlayerY + dy;
 		if (ex = -1) {
@@ -136,12 +163,12 @@ class Control {
 		}
 		let br = 0;
 
-		while ((-1 < ex) & (ex < 32) & (-1 < ey) & (ey < 16) & (br = 0)) {
+		while (br = 0) {
 			let tmp = map[ey];
-			if (tmp.charAt(ex) = 66) {
+			if (tmp.charAt(ex) = 65) {
 				let br = 1;
 			} else {
-				if (tmp.charAt(ex) = 65) {
+				if (tmp.charAt(ex) = 66) {
 					let ex = ex + dx;
 					let ey = ey + dy;
 					if (ex = -1) {
@@ -165,29 +192,41 @@ class Control {
 		if (br = 1) {
 			// undraw
 			let tmp = map[blackPlayerY];
-			do tmp.setCharAt(blackPlayerX, 66);
+			do tmp.setCharAt(blackPlayerX, 65);
 			let map[blackPlayerY] = tmp;
-			do Graphics.drawBlock(66, blackPlayerX, blackPlayerY);
+			do Graphics.drawBlock(65, blackPlayerX, blackPlayerY);
 
 			// push block
 			let tmp = map[ey];
-			do tmp.setCharAt(ex, 65);
-			do Graphics.drawBlock(65, ex, ey);
+			do tmp.setCharAt(ex, 66);
+			do Graphics.drawBlock(66, ex, ey);
 			let map[ey] = tmp;
 
 			let blackPlayerX = blackPlayerX + dx;
 			let blackPlayerY = blackPlayerY + dy;
+			if (blackPlayerX = -1) {
+				let blackPlayerX = 31;
+			}
+			if (blackPlayerX = 32) {
+				let blackPlayerX = 0;
+			}
+			if (blackPlayerY = -1) {
+				let blackPlayerY = 15;
+			}
+			if (blackPlayerY = 16) {
+				let blackPlayerY = 0;
+			}
 
 			let tmp = map[blackPlayerY];
-			do tmp.setCharAt(blackPlayerX, 66);
-			do Graphics.drawBlock(66, blackPlayerX, blackPlayerY);
+			do tmp.setCharAt(blackPlayerX, 65);
+			do Graphics.drawBlock(65, blackPlayerX, blackPlayerY);
 			let map[blackPlayerY] = tmp;
 
 			// draw
 			let tmp = map[blackPlayerY];
-			do tmp.setCharAt(blackPlayerX, 68);
+			do tmp.setCharAt(blackPlayerX, 67);
 			let map[blackPlayerY] = tmp;
-			do Output.moveCursor(1, 0);
+			do Output.moveCursor(0, 0);
 			do Output.printString(map[blackPlayerY]);
 			do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
 		}

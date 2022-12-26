@@ -9,12 +9,13 @@ class Main {
 
 		do Graphics.test();
 
+		// do Graphics.loadingScreen();
+
 		do Graphics.init();
 
 		do Levels.init();
-		do Levels.DrawTutorial1();
 
-		do Control.init(0, 2, 0, 13);
+		do Control.init(-1, -1, 0, 13, 0);
 
 		let end = 0;
 		while (end = 0) {
