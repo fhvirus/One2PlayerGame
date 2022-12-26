@@ -9,6 +9,8 @@ class Control {
 	static String tmp;
 
 	function void init(int lvl) {
+		var int i;
+		var String s;
 		let level = lvl;
 		let whitePlayerSX = Levels.getWSX(lvl);
 		let whitePlayerSY = Levels.getWSY(lvl);
@@ -142,8 +144,6 @@ class Control {
 			let tmp = map[whitePlayerY];
 			do tmp.setCharAt(whitePlayerX, 67);
 			let map[whitePlayerY] = tmp;
-			do Output.moveCursor(0, 0);
-			do Output.printString(map[whitePlayerY]);
 			do Graphics.drawWhitePlayer(whitePlayerX, whitePlayerY);
 		}
 		return;
@@ -239,8 +239,6 @@ class Control {
 			let tmp = map[blackPlayerY];
 			do tmp.setCharAt(blackPlayerX, 68);
 			let map[blackPlayerY] = tmp;
-			do Output.moveCursor(0, 0);
-			do Output.printString(map[blackPlayerY]);
 			do Graphics.drawBlackPlayer(blackPlayerX, blackPlayerY);
 		}
 		return;
@@ -296,16 +294,6 @@ class Control {
 			do Control.moveBlack(1, 0);
 		}
 
-		// do Output.printString("(");
-		// do Output.printInt(blackPlayerX);
-		// do Output.printString(", ");
-		// do Output.printInt(blackPlayerY);
-		// do Output.printString("), (");
-		// do Output.printInt(whitePlayerX);
-		// do Output.printString(", ");
-		// do Output.printInt(whitePlayerY);
-		// do Output.printString(")");
-		// do Output.println();
 		return 0;
 	}
 

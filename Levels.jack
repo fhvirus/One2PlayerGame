@@ -24,6 +24,16 @@ class Levels {
 	static Array GoalYIndex;
 
 	function void setMap(Array map, int lvl) {
+		// var int i;
+		// var String s;
+		// let i = 0;
+
+		// while (i < 16) {
+		// 	let s = map[i];
+		// 	do s.dispose();
+		// 	let i = i + 1;
+		// }
+
 		do map.dispose();
 		let map = Array.new(16);
 
@@ -149,6 +159,41 @@ class Levels {
 		let GoalXIndex[3] = 14;
 		let GoalYIndex[3] = 9;
 
+		return;
+	}
+
+	function void printHint(int lvl) {
+		do Output.moveCursor(0, 0);
+		if (lvl = 0) {
+			do Output.printString("Use arrow keys to move white player.");
+			do Output.println();
+			do Output.printString("White player can move on white blocks,");
+			do Output.println();
+			do Output.printString("and push black blocks.");
+			do Output.println();
+			do Output.printString("Press R to restart if needed.");
+			do Output.println();
+		}
+		if (lvl = 1) {
+			do Output.printString("Use WASD to move black player.");
+			do Output.println();
+			do Output.printString("Black player can move on black blocks,");
+			do Output.println();
+			do Output.printString("and push white blocks.");
+			do Output.println();
+			do Output.printString("Guide them to the goal!");
+			do Output.println();
+		}
+		if (lvl = 2) {
+			do Output.printString("This is a free map!");
+			do Output.println();
+			do Output.printString("Do whatever you want.");
+			do Output.println();
+		}
+		if (lvl = 3) {
+			do Output.printString("Here's a little challenge for you...");
+			do Output.println();
+		}
 		return;
 	}
 

@@ -9,7 +9,7 @@ class Main {
 
 		do Graphics.test();
 
-		// do Graphics.loadingScreen();
+		do Graphics.loadingScreen();
 
 		do Graphics.init();
 
@@ -20,6 +20,7 @@ class Main {
 		while (lvl < 4) {
 
 			do Control.init(lvl);
+			do Levels.printHint(lvl);
 
 			let end = 0;
 			while (end = 0) {
@@ -31,6 +32,11 @@ class Main {
 
 			let lvl = lvl + 1;
 		}
+
+		do Graphics.loadingScreen();
+
+		do Output.printString("To be continued...");
+		do Output.println();
 
 		return;
 	}
